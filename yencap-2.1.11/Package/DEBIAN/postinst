@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ln -s  /usr/local/Ensuite/yencap/netconfd.py /usr/bin/netconfd

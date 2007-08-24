@@ -1,0 +1,16 @@
+BGP_Module
+    System Requirements
+		* 4Suite (later than 1.0_alpha4)
+			Follow the instruction from http://4suite.org/
+        * Quagga
+            Follow the instruction from http://quagga.net
+        * Yapps2
+            Download the file from http://theory.stanford.edu/~amitp/Yapps/
+            UnZip the file
+            Add the path of the folder just unzipped to the $PYTHONPATH 
+
+    The modules contains files made by a parser generator, so in order to create the
+    files it should be run first 
+        ">python setup.py"
+
+    

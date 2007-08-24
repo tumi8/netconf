@@ -1,0 +1,7 @@
+spdadd 10.0.11.41/32[21] 10.0.11.33/32[any] tcp -P out ipsec esp/tunnel/192.168.0.1-192.168.1.2/require ;
+add 3ffe:501:4819::1 3ffe:501:481d::1 esp  123457 -m tunnel -E des-cbc 0x3ffe05014819ffff -A hmac-md5 "1234567890123456" ;
+add 10.0.0.13 10.0.0.216 ah 0x0001e241 -A hmac-md5 "1234567890123456";
+add 10.0.0.11 10.0.0.216 esp 15701 -E 3des-cbc "123456789012123456789012";
+spdadd 10.0.0.216 10.0.0.11 ipv6-crypt -P out ipsec esp/transport//require ah/transport//require;
+add fec0:0:0:1::1 fec0:0:0:2::1 esp 0x10001 -m tunnel -E 3des-cbc "kamekame12341234kame1234" -A hmac-sha1 "this is the test key" ;
+spdadd fec0:0:0:2::/64 fec0:0:0:1::/64 any -P in ipsec esp/tunnel/fec0:0:0:2::1-fec0:0:0:1::1/require ah/transport/fec0:0:0:2::1-fec0:0:0:1::1/require ;

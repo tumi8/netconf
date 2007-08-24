@@ -1,0 +1,37 @@
+
+<documentlink>
+	<redistributes>
+		<parser valuetype="list"/>
+		<childs>
+			<reditribute>
+				<deletingcommand neg="true">
+                    redistribute %s
+                    <value>*[local-name() ='type']/text()</value>
+                </deletingcommand>
+				<creatingcommand>
+                    redistribute %s
+                    <value>*[local-name() ='type']/text()</value>
+                </creatingcommand>
+				<followcommand>
+                    redistribute %s
+                    <value>*[local-name() ='type']/text()</value>
+                </followcommand>
+				<childs>
+					<type key="true"/>
+					<metric>
+						<command>
+                            metric %s
+                            <value>text()</value>
+                        </command>
+					</metric>
+					<route-map>
+						<command>
+                            route-map %s
+                            <value>text()</value>
+                        </command>
+					</route-map>
+				</childs>
+			</reditribute>
+		</childs>
+	</redistributes>
+</documentlink>

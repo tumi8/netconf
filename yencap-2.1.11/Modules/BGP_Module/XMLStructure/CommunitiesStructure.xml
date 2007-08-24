@@ -1,0 +1,52 @@
+<documentlink>
+	<communities>
+		<childs>
+			<community-list>
+				<parser valuetype="list" reprintparent="true"/>
+				<command>
+                    ip community-list %s %s %s %s
+                    <value>*[local-name() ='type']/text()</value>
+                    <value>*[local-name() ='name']/text()</value>
+                    <value>*[local-name() ='state']/text()</value>
+                    <value>*[local-name() ='values']//text()</value>
+				</command>
+                <childs>
+					<type key="true"/>	
+					<name key="true"/>
+					<state/>
+					<values>
+						<parser valuetype="list"/>
+						<childs>
+							<value/>
+						</childs>
+					</values>
+				</childs>
+			</community-list>
+		</childs>
+	</communities>
+	<extcommunities>
+		<childs>
+			<extcommunity-list>
+				<parser valuetype="list" reprintparent="true"/>
+				<command>
+                    ip extcommunity-list %s %s %s %s
+                    <value>*[local-name() ='type']/text()</value>
+                    <value>*[local-name() ='name']/text()</value>
+                    <value>*[local-name() ='state']/text()</value>
+                    <value>*[local-name() ='values']//text()</value>
+				</command>
+                <childs>
+					<type key="true"/>	
+					<name key="true"/>
+					<state/>
+					<values>
+						<parser valuetype="list"/>
+						<childs>
+							<value/>
+						</childs>
+					</values>
+				</childs>
+			</extcommunity-list>
+		</childs>
+	</extcommunities>
+</documentlink>

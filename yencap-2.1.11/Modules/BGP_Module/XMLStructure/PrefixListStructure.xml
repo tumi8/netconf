@@ -1,0 +1,127 @@
+
+<documentlink>
+	<prefix-list>
+		<parser valuetype="list" reprintparent="true"/>
+		<deletingcommand recursion="true" neg="true">
+			<condition>
+				<exist-xpath>*[local-name() ='description']</exist-xpath>
+			</condition>
+			ip prefix-list %s description %s
+            <value>*[local-name() ='name']/text()</value>
+            <value>*[local-name() ='description']/text()</value>
+		</deletingcommand>
+		<followcommand>
+			ip prefix-list %s 
+            <value>*[local-name() ='name']/text()</value>
+		</followcommand>
+		<childs>
+			<name key ="true"/>
+			<description>
+                <command>
+                    description %s
+                    <value>text()</value>
+                </command>
+		    </description>
+			<sequences>
+				<parser valuetype="list" reprintparent="true"/>
+				<command>
+					%s %s %s/%s %s %s
+                    <value>
+					    <condition>
+						    <exist-xpath>*[local-name() ='seq']</exist-xpath>
+                        </condition>
+                        <string>seq</string>
+                        *[local-name() ='seq']/text()
+                    </value>
+                    <value>*[local-name() ='state']/text()</value>
+                    <value>*[local-name() ='ip-prefix']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+                    <value>
+					    <condition>
+						    <exist-xpath>*[local-name() ='le']</exist-xpath>
+                        </condition>
+                        <string>le</string>
+                        *[local-name() ='le']/text()
+                    </value>
+                    <value>
+					    <condition>
+				    		<exist-xpath>*[local-name() ='ge']</exist-xpath>
+                        </condition>
+				    	<string>ge</string>
+					    *[local-name() ='ge']/text()
+                    </value>
+                </command>
+				<childs>
+					<seq key="true"/>
+					<state key="true"/>
+                    <ip-prefix/>
+					<mask/>
+					<ge/>
+					<le/>
+				</childs>
+			</sequences>
+		</childs>
+	</prefix-list>
+	<ipv6-prefix-list>
+		<parser valuetype="list" reprintparent="true"/>
+		<deletingcommand recursion="true" neg="true">
+			<condition>
+				<exist-xpath>*[local-name() ='description']</exist-xpath>
+			</condition>
+			ipv6 prefix-list %s description %s
+            <value>*[local-name() ='name']/text()</value>
+            <value>*[local-name() ='description']/text()</value>
+		</deletingcommand>
+		<followcommand>
+			ipv6 prefix-list %s 
+            <value>*[local-name() ='name']/text()</value>
+		</followcommand>
+		<childs>
+			<name key ="true"/>
+			<description>
+                <command>
+			        description %s
+                    <value>text()</value>
+                </command>
+            </description>
+			<sequences>
+				<parser valuetype="list" reprintparent="true"/>
+				<command>
+					%s %s %s/%s %s %s
+			 		<value>
+	    				<condition>
+						    <exist-xpath>*[local-name() ='seq']</exist-xpath>
+                        </condition>
+    					<string>seq</string>
+					    *[local-name() ='seq']/text()
+                    </value>
+			    	<value>*[local-name() ='state']/text()</value>
+		    		<value>*[local-name() ='ip-prefix']/text()</value>
+	    			<value>*[local-name() ='mask']/text()</value>
+	    			<value>
+    					<condition>
+						    <exist-xpath>*[local-name() ='le']</exist-xpath>
+                        </condition>
+					    <string>le</string>
+				    	*[local-name() ='le']/text()
+                    </value>
+	    			<value>
+    					<condition>
+					    	<exist-xpath>*[local-name() ='ge']</exist-xpath>
+                        </condition>
+					    <string>ge</string>
+					    *[local-name() ='ge']/text()
+                    </value>
+                </command>
+		    	<childs>
+					<seq key="true"/>
+					<state key="true"/>
+                    <ip-prefix/>
+					<mask/>
+					<ge/>
+					<le/>
+				</childs>
+			</sequences>
+		</childs>
+	</ipv6-prefix-list>
+</documentlink>

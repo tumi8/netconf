@@ -1,0 +1,128 @@
+<documentlink xmlns:xi="http://www.w3.org/2001/XInclude">
+<address-families>
+	<parser>
+		<path/>
+	</parser>
+	<childs>
+		<ipv4-address-family>
+			<parser>
+				<setvalue field="ipv4-address-family/type">unicast</setvalue>
+				<path/>
+			</parser>
+			<parser>
+				<condition>
+					<haskey>address-families/ipv4-multicast</haskey>
+				</condition>
+				<path>address-families/ipv4-multicast</path>
+				<setvalue field="type">multicast</setvalue> 
+			</parser>
+			<deletingcommand neg='true'>
+				<condition>
+					<equal>
+						<string>unicast</string>
+						<xpath>*[local-name() ='type']/text()</xpath>
+					</equal>
+				</condition>
+				bgp default ipv4-unicast
+			</deletingcommand>
+			<deletingcommand recursion='true'>
+				<condition>
+					<not>
+						<equal>
+							<string>unicast</string>
+							<xpath>*[local-name() ='type']/text()</xpath>
+						</equal>
+					</not>
+				</condition>
+				address-family ipv4 %s
+                <value>*[local-name() ='type']/text()</value>
+			</deletingcommand>
+			<exitdeletingcommand recursion='true'>
+				<condition>
+					<not>
+						<equal>
+							<string>unicast</string>
+							<xpath>*[local-name() ='type']/text()</xpath>
+						</equal>
+					</not>
+				</condition>
+				exit
+			</exitdeletingcommand>
+			<creatingcommand>
+				<condition>
+					<equal>
+						<string>unicast</string>
+						<xpath>*[local-name() ='type']/text()</xpath>
+					</equal>
+				</condition>
+				bgp default ipv4-unicast
+			</creatingcommand>
+			<command>
+                address-family ipv4 %s
+                <value>*[local-name() ='type']/text()</value>
+            </command>
+			<exitcommand>exit</exitcommand>
+			<childs>
+				<type key="true"/>
+				<xi:include href="NetworksIPv4Structure.xml" xpointer="xpointer(/documentlink/networks)" parse="xml"/>
+				<xi:include href="AggregateAddressIPv4Structure.xml" xpointer="xpointer(/documentlink/aggregate-addresses)" parse="xml"/>
+				<xi:include href="RedistributeIPv4Structure.xml" xpointer="xpointer(/documentlink/resdistributes)" parse="xml"/>
+				<xi:include href="GroupConfStructure.xml" xpointer="xpointer(/documentlink/peer-groups)" parse="xml"/>
+				<xi:include href="NeighborConfStructure.xml" xpointer="xpointer(/documentlink/neighbors)" parse="xml"/>
+			</childs>
+		</ipv4-address-family>
+		<vpnv4-address-family>
+			<parser>
+				<condition>
+					<haskey>address-families/vpnv4-unicast</haskey>
+				</condition>
+				<path>address-families/vpnv4-unicast</path>
+				<setvalue field="type">unicast</setvalue> 
+			</parser>
+			<deletingcommand recursion='true'>
+                address-family vpnv4 %s
+                <value>*[local-name() ='type']/text()</value>
+            </deletingcommand>
+			<exitdeletingcommand recursion='true'>exit-address-family</exitdeletingcommand>
+			<command>
+                address-family vpnv4 %s
+                <value>*[local-name() ='type']/text()</value>
+            </command>
+			<exitcommand>exit-address-family</exitcommand>
+			<childs>
+				<type key="true"/>
+				<xi:include href="NetworksVPNv4Structure.xml" xpointer="xpointer(/documentlink/networks)" parse="xml"/>
+				<xi:include href="GroupConfStructure.xml" xpointer="xpointer(/documentlink/peer-groups)" parse="xml"/>
+				<xi:include href="NeighborConfStructure.xml" xpointer="xpointer(/documentlink/neighbors)" parse="xml"/>
+			</childs>
+		</vpnv4-address-family>
+		<ipv6-address-family>
+			<parser>
+				<condition>
+					<haskey>address-families/ipv6-unicast</haskey>
+				</condition>
+				<path>address-families/ipv6-unicast</path>
+				<setvalue field="type">unicast</setvalue> 
+			</parser>
+			<deletingcommand recursion='true'>
+                address-family ipv6 %s
+                <value>*[local-name() ='type']/text()</value>
+            </deletingcommand>
+			<exitdeletingcommand recursion='true'>exit-address-family</exitdeletingcommand>
+			<command>
+                address-family ipv6 %s
+                <value>*[local-name() ='type']/text()</value>
+            </command>
+			<exitcommand>exit-address-family</exitcommand>
+			<childs>
+				<type key="true"/>
+				<xi:include href="NetworksIPv4Structure.xml" xpointer="xpointer(/documentlink/networks)" parse="xml"/>
+				<xi:include href="AggregateAddressIPv4Structure.xml" xpointer="xpointer(/documentlink/aggregate-addresses)" parse="xml"/>
+				<xi:include href="RedistributeIPv4Structure.xml" xpointer="xpointer(/documentlink/redistributes)" parse="xml"/>
+				<xi:include href="GroupConfStructure.xml" xpointer="xpointer(/documentlink/peer-groups)" parse="xml"/>
+				<xi:include href="NeighborConfStructure.xml" xpointer="xpointer(/documentlink/neighbors)" parse="xml"/>
+			</childs>
+		</ipv6-address-family>
+	</childs>
+</address-families>
+</documentlink>

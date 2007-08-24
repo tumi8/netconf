@@ -1,0 +1,42 @@
+fec0:0:0:1::1 fec0:0:0:2::1
+        esp mode=tunnel spi=65537(0x00010001) reqid=0(0x00000000)
+        E: 3des-cbc  6b616d65 6b616d65 31323334 31323334 6b616d65 31323334
+        A: hmac-sha1  74686973 20697320 74686520 74657374 206b6579
+        seq=0x00000000 replay=0 flags=0x00000000 state=mature
+        created: Mar 11 22:27:29 2006   current: Mar 11 23:15:01 2006
+        diff: 2852(s)   hard: 0(s)      soft: 0(s)
+        last:                           hard: 0(s)      soft: 0(s)
+        current: 0(bytes)       hard: 0(bytes)  soft: 0(bytes)
+        allocated: 0    hard: 0 soft: 0
+        sadb_seq=3 pid=16368 refcnt=0
+3ffe:501:4819::1 3ffe:501:481d::1
+        esp mode=tunnel spi=123457(0x0001e241) reqid=0(0x00000000)
+        E: des-cbc  3ffe0501 4819ffff
+        A: hmac-md5  31323334 35363738 39303132 33343536
+        seq=0x00000000 replay=0 flags=0x00000000 state=mature
+        created: Mar 11 22:27:29 2006   current: Mar 11 23:15:01 2006
+        diff: 2852(s)   hard: 0(s)      soft: 0(s)
+        last:                           hard: 0(s)      soft: 0(s)
+        current: 0(bytes)       hard: 0(bytes)  soft: 0(bytes)
+        allocated: 0    hard: 0 soft: 0
+        sadb_seq=2 pid=16368 refcnt=0
+10.0.0.11 10.0.0.216
+        esp mode=transport spi=15701(0x00003d55) reqid=0(0x00000000)
+        E: 3des-cbc  31323334 35363738 39303132 31323334 35363738 39303132
+        seq=0x00000000 replay=0 flags=0x00000000 state=mature
+        created: Mar 11 22:27:29 2006   current: Mar 11 23:15:01 2006
+        diff: 2852(s)   hard: 0(s)      soft: 0(s)
+        last:                           hard: 0(s)      soft: 0(s)
+        current: 0(bytes)       hard: 0(bytes)  soft: 0(bytes)
+        allocated: 0    hard: 0 soft: 0
+        sadb_seq=1 pid=16368 refcnt=0
+10.0.0.13 10.0.0.216
+        ah mode=transport spi=123457(0x0001e241) reqid=0(0x00000000)
+        A: hmac-md5  31323334 35363738 39303132 33343536
+        seq=0x00000000 replay=0 flags=0x00000000 state=mature
+        created: Mar 11 22:27:29 2006   current: Mar 11 23:15:01 2006
+        diff: 2852(s)   hard: 0(s)      soft: 0(s)
+        last:                           hard: 0(s)      soft: 0(s)
+        current: 0(bytes)       hard: 0(bytes)  soft: 0(bytes)
+        allocated: 0    hard: 0 soft: 0
+        sadb_seq=0 pid=16368 refcnt=0

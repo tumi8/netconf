@@ -1,0 +1,66 @@
+
+<documentlink  xmlns:xi="http://www.w3.org/2001/XInclude">
+	<networks>
+		<parser valuetype="list"/>
+		<childs>
+			<network>
+				<command>
+				    <condition>
+                        <not>
+						    <isdigit>
+						        <xpath>*[local-name() ='mask']/text()</xpath>
+                            </isdigit>
+                        </not>
+                    </condition>
+                	network %s %s %s %s
+                    <value>*[local-name() ='ip']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+                    <value>
+                        <condition>
+    					    <exist-xpath>*[local-name() ='backdoor']</exist-xpath>
+                        </condition>
+                        <string>backdoor</string>
+					</value>
+                    <value>
+                        <condition>
+    					    <exist-xpath>*[local-name() ='route-map']</exist-xpath>
+                        </condition>
+                        <string>route-map</string>
+                        *[local-name() ='route-map']/text()
+					</value>
+				</command>
+                <command>
+				    <condition>
+                        <isdigit>
+						    <xpath>*[local-name() ='mask']/text()</xpath>
+                        </isdigit>
+                    </condition>
+                	network %s/%s %s %s
+                    <value>*[local-name() ='ip']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+                    <value>
+                        <condition>
+    					    <exist-xpath>*[local-name() ='backdoor']</exist-xpath>
+                        </condition>
+                        <string>backdoor</string>
+					</value>
+                    <value>
+                        <condition>
+    					    <exist-xpath>*[local-name() ='route-map']</exist-xpath>
+                        </condition>
+                        <string>route-map</string>
+                        *[local-name() ='route-map']/text()
+					</value>
+				</command>
+                <childs>
+					<ip key="true"/>
+					<mask/>
+					<backdoor>
+						<parser valuetype="boolean"/>
+					</backdoor>
+					<route-map/>
+				</childs>
+			</network>
+		</childs>
+	</networks>
+</documentlink>

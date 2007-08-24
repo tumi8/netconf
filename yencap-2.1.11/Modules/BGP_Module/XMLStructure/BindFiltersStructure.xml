@@ -1,0 +1,67 @@
+
+<documentlink>
+	<bind-filters>
+		<childs>
+			<distribute-list>
+                <parser valuetype="list" reprintparent="true"/>
+				<command>
+                    distribute-list %s %s
+                    <value>*[local-name() ='name']/text()</value>
+                    <value>*[local-name() ='direct']/text()</value>
+                </command>
+				<childs>
+					<name key="true"/>
+					<direct key="true"/>
+				</childs>
+			</distribute-list>
+			<prefix-list>
+				<parser valuetype="list" reprintparent="true"/>
+				<command>
+                    prefix-list %s %s
+                    <value>*[local-name() ='name']/text()</value>
+                    <value>*[local-name() ='direct']/text()</value>
+                </command>
+				<childs>
+					<name key="true"/>
+					<direct key="true"/>
+				</childs>
+			</prefix-list>
+			<filter-list>
+				<parser valuetype="list" reprintparent="true"/>
+				<command>
+                    filter-list %s %s
+                    <value>*[local-name() ='name']/text()</value>
+                    <value>*[local-name() ='direct']/text()</value>
+                </command>
+				<childs>
+					<name key="true"/>
+					<direct key="true"/>
+				</childs>
+			</filter-list>
+			<route-map>
+				<parser valuetype="list" reprintparent="true"/>
+				<command>
+                    route-map %s %s
+                    <value>*[local-name() ='name']/text()</value>
+                    <value>*[local-name() ='direct']/text()</value>
+                </command>
+				<childs>
+					<name key="true"/>
+					<direct key="true"/>
+				</childs>
+			</route-map>
+			<unsuppress-map>
+				<parser valuetype="list" reprintparent="true"/>
+				<command>
+                    unsuppress-map %s %s
+                    <value>*[local-name() ='name']/text()</value>
+				    <value>*[local-name() ='direct']/text()</value>
+				</command>
+				<childs>
+					<name key="true"/>
+					<direct key="true"/>
+				</childs>
+			</unsuppress-map>
+		</childs>
+	</bind-filters>
+</documentlink>

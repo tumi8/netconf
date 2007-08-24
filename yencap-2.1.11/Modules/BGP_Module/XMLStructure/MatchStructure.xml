@@ -1,0 +1,141 @@
+
+<documentlink>
+	<match>
+		<followcommand absolutecomm="true">match</followcommand>
+		<childs>
+			<metric>
+				<parser valuetype="list"/>
+				<followcommand>metric</followcommand>
+				<childs>
+					<metric-value>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</metric-value>
+				</childs>
+			</metric>
+			<origin>
+				<command>
+                    origin %s
+                    <value>text()</value>
+                </command>
+			</origin>
+			<as-path>
+				<parser valuetype="list"/>
+				<followcommand>as-path</followcommand>
+				<childs>
+					<as-path-name>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</as-path-name>
+				</childs>
+			</as-path>
+			<access-list>
+				<parser valuetype="list"/>
+				<followcommand>ip address</followcommand>
+				<childs>
+					<list-name>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</list-name>
+				</childs>
+			</access-list>
+			<ipv6-access-list>
+				<parser valuetype="list"/>
+				<followcommand>ipv6 address</followcommand>
+				<childs>
+					<list-name>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</list-name>
+				</childs>
+			</ipv6-access-list>
+			<prefix-list>
+				<parser valuetype="list"/>
+				<followcommand>ip address prefix-list</followcommand>
+				<childs>
+					<list-name>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</list-name>
+				</childs>
+			</prefix-list>
+			<ipv6-prefix-list>
+				<parser valuetype="list"/>
+				<followcommand>ipv6 address prefix-list</followcommand>
+				<childs>
+					<list-name>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</list-name>
+				</childs>
+			</ipv6-prefix-list>
+			<next-hop-access-list>
+				<parser valuetype="list"/>
+				<followcommand>ip next-hop</followcommand>
+				<childs>
+					<list-name>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</list-name>
+				</childs>
+			</next-hop-access-list>
+			<next-hop-prefix-list>
+				<parser valuetype="list"/>
+				<followcommand>ip next-hop prefix-list</followcommand>
+				<childs>
+					<list-name>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</list-name>
+				</childs>
+			</next-hop-prefix-list>
+			<ipv6-next-hop>
+				<parser valuetype="list"/>
+				<followcommand>ipv6 next-hop</followcommand>
+				<childs>
+					<ip>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</ip>
+				</childs>
+			</ipv6-next-hop>
+			<community>
+				<command>
+                    community %s %s
+                    <value>*[local-name() ='name']/text()</value>
+                    <value>*[local-name() ='exact-match']/text()</value>
+                </command>
+				<childs>
+					<name key="true"/>
+					<exact-match>
+						<parser valuetype="boolean"/>
+					</exact-match>
+				</childs>
+			</community>
+			<extcommunity>
+				<command>
+                    extcommunity %s
+                    <value>text()</value>
+                </command>
+			</extcommunity>
+		</childs>
+	</match>
+</documentlink>

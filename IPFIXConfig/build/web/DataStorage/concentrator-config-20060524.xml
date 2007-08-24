@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipfixConfig xmlns="urn:ietf:params:xml:ns:ipfix-config">
+
+    <collectingProcess id="1">
+	<listener>
+	    <ipAddressType>4</ipAddressType>
+	    <ipAddress>10.10.10.10</ipAddress>
+	    <transportProtocol>17</transportProtocol>
+	    <port>1234</port>
+	</listener>
+	<next>
+	    <meteringProcessId>1</meteringProcessId>
+	</next>
+    </collectingProcess>
+
+    <meteringProcess id="1">
+	<packetSelection>
+	    <countBased>
+		<interval>100</interval>
+		<spacing>20</spacing>
+	    </countBased>
+	</packetSelection>
+	<next>
+	    <meteringProcessId>2</meteringProcessId>
+	</next>
+    </meteringProcess>
+
+    <meteringProcess id="2">
+	<flowMetering>
+	    <rule>
+		<templateId>998</templateId>
+		<flowKey>
+		    <ieName>sourceIPv4Address</ieName>
+		    <modifier>mask /16</modifier>
+		</flowKey>
+		<flowKey>
+		    <ieName>destinationIPv4Address</ieName>
+		</flowKey>
+		<flowKey>
+		    <ieName>transportProtocol</ieName>
+		</flowKey>
+		<flowKey>
+		    <ieName>sourceTransportPort</ieName>
+		</flowKey>
+		<flowKey>
+		    <ieName>destinationTransportPort</ieName>
+		</flowKey>
+		<nonFlowKey>
+		    <ieName>flowStartSeconds</ieName>
+		</nonFlowKey>
+		<nonFlowKey>
+		    <ieName>flowEndSeconds</ieName>
+		</nonFlowKey>
+		<nonFlowKey>
+		    <ieName>octetDeltaCount</ieName>
+		</nonFlowKey>
+		<nonFlowKey>
+		    <ieName>packetDeltaCount</ieName>
+		</nonFlowKey>
+	    </rule>
+	    <rule>
+		<templateId>999</templateId>
+		<flowKey>
+		    <ieName>sourceIPv4Address</ieName>
+		    <modifier>mask /16</modifier>
+		</flowKey>
+		<flowKey>
+		    <ieName>destinationIPv4Address</ieName>
+		</flowKey>
+		<flowKey>
+		    <ieName>transportProtocol</ieName>
+		    <match>1</match>
+		</flowKey>
+		<nonFlowKey>
+		    <ieName>flowStartSeconds</ieName>
+		</nonFlowKey>
+		<nonFlowKey>
+		    <ieName>flowEndSeconds</ieName>
+		</nonFlowKey>
+		<nonFlowKey>
+		    <ieName>octetDeltaCount</ieName>
+		</nonFlowKey>
+		<nonFlowKey>
+		    <ieName>packetDeltaCount</ieName>
+		</nonFlowKey>
+	    </rule>
+	    <expiration>
+		<activeTimeout>5</activeTimeout>
+		<inactiveTimeout>10</inactiveTimeout>
+	    </expiration>
+	</flowMetering>
+	<next>
+	    <exportingProcessId>1</exportingProcessId>
+	</next>
+    </meteringProcess>
+
+    <exportingProcess id="1">
+        <udpTemplateManagement> 
+            <templateRefreshTimeout unit="msec">500</templateRefreshTimeout>
+            <templateRefreshRate>10</templateRefreshRate>
+        </udpTemplateManagement>
+	<collector>
+	    <ipAddressType>4</ipAddressType>
+	    <ipAddress>10.0.0.99</ipAddress>
+	    <transportProtocol>17</transportProtocol>
+	    <port>1234</port>
+	</collector>
+    </exportingProcess>
+</ipfixConfig>
+		    
+			
+		
+		

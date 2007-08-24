@@ -1,0 +1,29 @@
+<documentlink>
+	<bestpath>
+		<followcommand>bgp bestpath</followcommand>
+		<childs>
+			<as-path-ignore>
+				<parser valuetype="boolean"/>
+				<command>as-path ignore</command>
+			</as-path-ignore>
+			<compare-routerid>
+				<parser valuetype="boolean"/>
+				<command>compare-routerid</command>
+			</compare-routerid>
+			<med>
+				<parser allowempty="true"/>
+				<followcommand>med</followcommand>
+				<childs>
+					<confed>
+						<parser valuetype="boolean"/>
+						<command>confed</command>
+					</confed>
+					<missing-as-worst>
+						<parser valuetype="boolean"/>
+						<command>missing-as-worst</command>
+					</missing-as-worst>
+				</childs>
+			</med>
+		</childs>
+	</bestpath>
+</documentlink>

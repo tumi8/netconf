@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modules>
+
+	<!--
+    <module>
+		<name>BGP</name>
+		<xpath>/ycp:netconf/ycp:routing/bgp:bgp</xpath>
+		<namespace pref="bgp">urn:loria:madynes:ensuite:yencap:module:BGP:1.0</namespace>
+		<cachelifetime>1000000</cachelifetime>
+		<parameters>
+			<parameter name="host" value="127.0.0.1"/>
+			<parameter name="port" value="2605"/>
+			<parameter name="password" value="zebra"/>
+			<parameter name="allowxpath" value="true"/>
+			<parameter name="enable_pass" value="true"/>
+		</parameters>
+	</module>
+	
+	
+
+	<module>
+        <name>ASTERISK</name>
+        <xpath>/ycp:netconf/voip:asterisk</xpath>
+        <namespace pref="voip">urn:loria:madynes:ensuite:yencap:module:ASTERISK:1.0</namespace>
+        <cachelifetime>1000000</cachelifetime>
+        <parameters/>
+    </module>
+-->
+	
+	<module>
+		<name>VERMONT</name>
+		<xpath>/ycp:netconf/ycp:monitoring/mon:ipfixConfig</xpath>
+		<namespace pref="mon">urn:ietf:params:xml:ns:ipfix-config</namespace>
+		<cachelifetime>10000</cachelifetime>
+		<parameters/>
+	</module>
+
+	<!--<module>
+		<name>Interfaces</name>
+		<xpath>/ycp:netconf/ycp:network/ifs:interfaces</xpath>
+		<namespace pref="ifs">urn:loria:madynes:ensuite:yencap:module:Interfaces:1.0</namespace>
+		<cachelifetime>10000</cachelifetime>
+		<parameters/>
+	</module>-->
+
+	<!-- <module>
+		<name>Route</name>
+		<xpath>/ycp:netconf/ycp:network/rt:routes</xpath>
+		<namespace pref="rt">urn:loria:madynes:ensuite:yencap:module:Route:1.0</namespace>
+		<cachelifetime>100000</cachelifetime>
+		<parameters>
+			<parameter name="ip-version" value="6"/>
+		</parameters>
+	</module> -->
+<!--
+	<module>
+		<name>RBAC</name>
+		<xpath>/ycp:netconf/ycp:security/ac:rbac</xpath>
+		<namespace pref="ac">urn:loria:madynes:ensuite:yencap:module:RBAC:1.0</namespace>
+		<cachelifetime>1000000</cachelifetime>
+		<parameters/>
+	</module>
+
+	<module>
+		<name>RIP</name>
+		<xpath>/ycp:netconf/ycp:routing/rip:rip</xpath>
+		<namespace pref="rip">urn:loria:madynes:ensuite:yencap:module:RIP:1.0</namespace>
+		<cachelifetime>1000000</cachelifetime>
+		<parameters/>
+	</module>
+-->
+	<!--<module>
+		<name>Log</name>
+		<xpath>/ycp:netconf/log</xpath>
+		<namespace>log.xsd</namespace>
+	</module>-->
+	
+	<!-- 
+	<module>
+		<name>System</name>
+		<xpath>/ycp:netconf/s:system</xpath>
+		<namespace>urn:loria:madynes:ensuite:yencap:module:System:1.0</namespace>
+		<cachelifetime>1000000</cachelifetime>
+	</module>-->
+
+</modules>
+

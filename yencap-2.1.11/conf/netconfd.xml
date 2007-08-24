@@ -1,0 +1,30 @@
+<yencap>
+
+	<!-- IP version (4 or 6) -->
+	<ipversion>4</ipversion>
+
+	<!-- Application protocol (SSH, ...) -->
+	<protocol active="ssh">
+	
+		<ssh>
+			<!-- 
+				private-key-file contains the path to the private key of the server (typically id_rsa)
+				If the given path is relative, the default dir is ${YENCAP_HOME}/conf
+				To generate a rsa file: ssh-keygen -t rsa (see man for more options)
+			-->
+			<privatekeyfile keytype="rsa">id_rsa</privatekeyfile>
+		</ssh>
+
+		<!--
+			BEEP: NOT IMPLEMENTED
+		<beep>
+		</beep>-->
+
+	</protocol>
+
+	<options>
+		<!-- active or unactive-->
+		<option name="accesscontrol" value="active"/>
+	</options>
+
+</yencap>

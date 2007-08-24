@@ -1,0 +1,66 @@
+
+<documentlink>
+	<aggregate-addresses>
+		<parser valuetype="list"/>
+		<childs>
+			<aggregate-address>
+				<deletingcommand neg="true">
+					<condition>
+						<not>
+							<isdigit>
+								<xpath>*[local-name() ='mask']/text()</xpath>
+							</isdigit>
+						</not>
+					</condition>
+					aggregate-address %s %s
+                    <value>*[local-name() ='ip-prefix']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+                </deletingcommand>
+				<deletingcommand neg="true">
+					<condition>
+						<isdigit>
+							<xpath>*[local-name() ='mask']/text()</xpath>
+						</isdigit>
+					</condition>
+					aggregate-address %s/%s
+                    <value>*[local-name() ='ip-prefix']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+				</deletingcommand>
+				<followcommand>
+					<condition>
+						<not>
+							<isdigit>
+								<xpath>*[local-name() ='mask']/text()</xpath>
+							</isdigit>
+						</not>
+					</condition>
+					aggregate-address %s %s
+                    <value>*[local-name() ='ip-prefix']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+                </followcommand>
+				<followcommand>
+					<condition>
+						<isdigit>
+							<xpath>*[local-name() ='mask']/text()</xpath>
+						</isdigit>
+					</condition>
+					aggregate-address %s/%s
+                    <value>*[local-name() ='ip-prefix']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+                </followcommand>
+				<childs>
+					<ip-prefix key="true"/>
+					<mask key="true"/>
+					<as-set>
+						<parser valuetype="list"/>
+						<command>as-set</command>
+					</as-set>
+					<summary-only>
+						<parser valuetype="list"/>
+						<command>summary-only</command>
+					</summary-only>
+				</childs>
+			</aggregate-address>
+		</childs>
+	</aggregate-addresses>
+</documentlink>

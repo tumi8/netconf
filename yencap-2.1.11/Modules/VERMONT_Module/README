@@ -1,0 +1,12 @@
+Add the following to the /etc/ensuite/yencap/modules.xml file:
+<modules xmlns:mon=urn:company:yencap:module:vermont:1.0>
+<!-- other modules -->
+	<module>
+		<name>VERMONT</name>
+		<xpath>/ycp:netconf/ycp:monitoring/mon:MonitorConfig</xpath>
+		<namespace>urn:company:yencap:module:vermont:1.0</namespace>
+		<cache-lifetime>10000</cache-lifetime>
+	</module>
+</modules>
+
+Also update /etc/ensuite/yencap/rbac.xml file according to your security policy.

@@ -1,0 +1,148 @@
+
+<documentlink>
+	<neighbors>
+		<parser valuetype="list" />
+		<childs>
+			<neighbor>
+				<deletingcommand neg="true">
+                    neighbor %s remote-as %s
+                    <value>*[local-name() ='ip-address']/text()</value>
+                    <value>*[local-name() ='remote-as']/text()</value>
+                </deletingcommand>
+				<creatingcommand>
+                    neighbor %s remote-as %s
+                    <value>*[local-name() ='ip-address']/text()</value>
+                    <value>*[local-name() ='remote-as']/text()</value>
+                </creatingcommand>
+				<followcommand>
+                    neighbor %s
+                    <value>*[local-name() ='ip-address']/text()</value>
+                </followcommand>
+				<childs>
+					<ip-address key="true"/>
+					<remote-as/>
+					<bind-group>
+						<command>
+                            peer-group %s
+                            <value>text()</value>
+                        </command>
+					</bind-group>
+					<description>
+						<command>
+                            description %s
+                            <value>text()</value>
+                        </command>
+					</description>
+					<shutdown>
+						<parser valuetype="boolean"/>
+						<command>shutdown</command>
+					</shutdown>
+					<passive>
+						<parser valuetype="boolean"/>
+						<command>passive</command>
+					</passive>
+					<ebgp-multihop>
+						<parser allowempty="true"/>
+						<deletingcommand neg="true">ebgp-multihop</deletingcommand>
+						<creatingcommand>ebgp-multihop</creatingcommand>
+						<followcommand>ebgp-multihop</followcommand>
+						<childs>
+							<ttl>
+								<command>
+                                    %s
+                                    <value>text()</value>
+                                </command>
+							</ttl>
+						</childs>
+					</ebgp-multihop>
+					<enforce-multihop>
+						<parser valuetype="boolean"/>
+						<command>enforce-multihop</command>
+					</enforce-multihop>
+					<update-source>
+						<command>
+                            update-source %s
+						    <value>text()</value>
+                        </command>
+					</update-source>
+					<version>
+						<command>
+                            version %s
+                            <value>text()</value>
+                        </command>
+					</version>
+					<adverstisement-interval>
+						<parser valuetype="boolean"/>
+						<command>
+                            adverstisement-interval %s
+                            <value>text()</value>
+                        </command>
+					</adverstisement-interval>
+					<timers>
+						<deletingcommand neg="true">timers</deletingcommand>
+						<followcommand>timers</followcommand>
+						<childs>
+							<keep-alive>
+								<command>
+                                    %s
+                                    <value>text()</value>
+                                </command>
+							</keep-alive>
+							<hold-time>
+								<command>
+                                    %s
+                                    <value>text()</value>
+                                </command>
+							</hold-time>
+						</childs>
+					</timers>
+					<timers-connect>
+						<command>
+                            timers connect %s
+                            <value>text()</value>
+                        </command>
+					</timers-connect>
+					<weight>
+						<command>
+                            weight %s
+                            <value>text()</value>
+                        </command>
+					</weight>
+					<capability>
+						<followcommand>capability</followcommand>
+						<childs>
+							<dynamic>
+								<parser valuetype="boolean"/>
+								<command>dynamic</command>
+							</dynamic>
+							<route-refresh>
+								<parser valuetype="boolean"/>
+								<command>route-refresh</command>
+							</route-refresh>
+						</childs>
+					</capability>
+					<dont-capability-negotiate>
+						<parser valuetype="boolean"/>
+						<command>dont-capability-negotiate</command>
+					</dont-capability-negotiate>
+					<strict-capability-match>
+						<parser valuetype="boolean"/>
+						<command>strict-capability-match</command>
+					</strict-capability-match>
+					<override-capability>
+						<parser valuetype="boolean"/>
+						<command>override-capability</command>
+					</override-capability>
+					<transparent-as>
+						<parser valuetype="boolean"/>
+						<command>transparent-as</command>
+					</transparent-as>
+					<transparent-nexthop>
+						<parser valuetype="boolean"/>
+						<command>transparent-nexthop</command>
+					</transparent-nexthop>
+				</childs>
+			</neighbor>
+		</childs>
+	</neighbors>
+</documentlink>

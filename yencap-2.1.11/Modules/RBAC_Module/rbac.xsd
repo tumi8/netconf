@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+  targetNamespace="urn:madynes:params:xml:ns:netconf:rbac:1.0"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns="urn:madynes:params:xml:ns:netconf:rbac:1.0">
+  <!--
+    <rpc> element
+  -->
+
+  
+  <xs:element name="rbac" type="rbacType"/>
+
+  <xs:complexType name="userType">
+    <xs:sequence>
+	  <xs:element name="login" type="xs:string"/>
+	  <xs:element name="password" type="xs:string"/>
+      <xs:element name="public-key" type="public-keyType" minOccurs="0"/>
+	  <xs:element name="firstname" type="xs:string"/>
+      <xs:element name="lastname" type="xs:string"/>
+      <xs:element name="room" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="public-keyType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="keytype" type="keytypeType" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="keytypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="rsa"/>
+      <xs:enumeration value="dsa"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="roleType">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="junior-roles" type="junior-rolesType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="usersType">
+    <xs:sequence>
+	  <xs:element name="user" type="userType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rolesType">
+    <xs:sequence>
+	  <xs:element name="role" type="roleType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rbacType">
+    <xs:sequence>
+      <xs:element name="users" type="usersType"/>
+	  <xs:element name="roles" type="rolesType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+
+
+
+
+
+
+  <xs:complexType name="junior-rolesType">
+    <xs:sequence>
+      <xs:element name="junior-role" type="junior-roleType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="junior-roleType">
+    <xs:attribute name="roleRef" type="xs:string"/>
+  </xs:complexType>
+  
+</xs:schema>

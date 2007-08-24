@@ -1,0 +1,8 @@
+Package: yencap
+Version: 1.1.24 
+Section: net
+Priority: optional
+Architecture: all
+Depends: python2.4 (>=2.4.1-2), python2.4-dev (>=2.4.1-2), xmlsec1 (>=1.2.7-4), python2.4-paramiko (>=1.5), libxmlsec1 (>=1.2.7-4), libxmlsec1-dev (>=1.2.7-4), libxmlsec1-openssl (>=1.2.7-4), python2.4-crypto (>=2.0.0), libxml2 (>=2-2.6.19-1), libxml2-dev (>=2-2.6.19-1), python2.4-libxml2 (>=2-2.6.19-1), python2.4-xml (>=0.8.4-1), python2.4-4suite (>=0.99) 
+Maintainer: Vincent Cridlig (vincent.cridlig@loria.fr)
+Description: Netconf Agent

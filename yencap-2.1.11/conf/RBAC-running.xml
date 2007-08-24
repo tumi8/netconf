@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rbac xmlns="urn:loria:madynes:ensuite:yencap:module:RBAC:1.0">
+	<prefixes>
+		<prefix name="ycp" value="urn:loria:madynes:ensuite:yencap:1.0"/>
+		<prefix name="ifs" value="urn:loria:madynes:ensuite:yencap:module:Interfaces:1.0"/>
+		<prefix name="bgp" value="urn:loria:madynes:ensuite:yencap:module:BGP:1.0"/>
+		<prefix name="rip" value="urn:loria:madynes:ensuite:yencap:module:RIP:1.0"/>
+		<prefix name="ac" value="urn:loria:madynes:ensuite:yencap:module:RBAC:1.0"/>
+		<prefix name="f" value="urn:loria:madynes:ensuite:yencap:module:Foo:1.0"/>
+		<prefix name="rt" value="urn:loria:madynes:ensuite:yencap:module:Route:1.0"/>
+		<prefix name="s" value="urn:loria:madynes:ensuite:yencap:module:System:1.0"/>
+		<prefix name="mon" value="urn:ietf:params:xml:ns:ipfix-config"/>
+	</prefixes>
+
+  <users>
+<!--
+    <user id="1">
+      <login>neuf</login>
+      <password>telecom</password>
+    </user>
+    <user id="2">
+      <login>cridligv</login>
+      <password>a</password>
+      <firstname>Vincent</firstname>
+      <lastname>Cridlig</lastname>
+      <room>B213</room>
+    </user>
+    <user id="3">
+      <login>alice</login>
+      <password>b</password>
+      <firstname>Alice</firstname>
+      <lastname>Blub</lastname>
+      <room>B213</room>
+    </user>
+    <user id="4">
+      <login>netconf</login>
+      <password>netconf</password>
+      <public-key keytype="rsa">AAAAB3NzaC1yc2EAAAABIwAAAIEAqSmp0ibI/kvv92aVz8A40GZA8hXomqcuwn9adOnuT5Sms9yaXwa2dFErOe6aghK550PvlSMNrMFw0caM2erD3xDM5B8XxQ7+RMZL6mSUndBN8/yIU3T/Ep4PLlL8wZ3B6SyfGbqVUj4v+taX7RtzupSpblQbP0CDbc350RfDJ6M=</public-key>
+      <room>B213</room>
+    </user>-->
+<user id="1">
+      <login>max</login>
+      <password>monitor</password>
+    </user>
+  </users>
+
+  <roles>
+    <role id="1">
+      <name>RoutingManager</name>
+    </role>
+    <role id="2">
+      <name>InternalRoutingManager</name>
+      <junior-roles>
+        <junior-role roleRef="1"/>
+      </junior-roles>
+    </role>
+    <role id="3">
+      <name>ExternalRoutingManager</name>
+      <junior-roles>
+        <junior-role roleRef="1"/>
+      </junior-roles>
+    </role>
+    <role id="4">
+      <name>SecurityManager</name>
+      <junior-roles>
+        <junior-role roleRef="1"/>
+      </junior-roles>
+    </role>
+    <role id="5">
+      <name>SuperRoutingManager</name>
+      <junior-roles>
+        <junior-role roleRef="2"/>
+        <junior-role roleRef="3"/>
+        <junior-role roleRef="4"/>
+      </junior-roles>
+    </role>
+    <role id="6">
+      <name>SuperManager</name>
+      <junior-roles>
+        <junior-role roleRef="5"/>
+      </junior-roles>
+    </role>
+  </roles>
+
+  <permissions>
+    <permission id="1" op="r">
+      <scope>/ycp:netconf/ycp:routing</scope>
+    </permission>
+    <permission id="2" op="w">
+      <scope>/ycp:netconf/ycp:routing/bgp:bgp</scope>
+    </permission>
+    <permission id="3" op="w">
+      <scope>/ycp:netconf/ycp:routing/rip:rip</scope>
+    </permission>
+    <permission id="4" op="w">
+      <scope>/ycp:netconf/ycp:routing/sec:acl</scope>
+    </permission>
+    <permission id="5" op="w">
+      <scope>/ycp:netconf/ycp:routing</scope>
+    </permission>
+    <permission id="6" op="rw">
+      <scope>/ycp:netconf</scope>
+    </permission>
+  </permissions>
+
+  <user-assignements>
+    <user-assignement roleRef="5" userRef="1" id="1"/>
+    <user-assignement roleRef="6" userRef="1" id="2"/>
+  </user-assignements>
+
+  <permission-assignements>
+    <permission-assignement roleRef="1" permRef="1" id="1"/>
+    <permission-assignement roleRef="2" permRef="3" id="2"/>
+    <permission-assignement roleRef="3" permRef="2" id="3"/>
+    <permission-assignement roleRef="4" permRef="4" id="4"/>
+    <permission-assignement roleRef="5" permRef="5" id="5"/>
+    <permission-assignement roleRef="6" permRef="6" id="6"/>
+  </permission-assignements>
+</rbac>

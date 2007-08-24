@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ipfixConfig xmlns="urn:ietf:params:xml:ns:ipfix-config">
+  <observationPoint id="1">
+    <observationDomainId>45444</observationDomainId>
+    <type>pcap</type>
+    <parameters>eth0</parameters>
+    <next>
+      <meteringProcessId>4</meteringProcessId>
+    </next>
+  </observationPoint>
+  <meteringProcess id="4">
+    <packetReporting>
+      <reportedIE>
+        <ieName>sourceIPv4Address</ieName>
+        <match>123.212.0.0</match>
+      </reportedIE>
+      <reportedIE>
+        <ieName>destIPv4Address</ieName>
+        <match>168.90.120.77</match>
+      </reportedIE>
+      <reportedIE>
+        <ieLength>8</ieLength>
+        <modifier>mask/16</modifier>
+      </reportedIE>
+    </packetReporting>
+    <next>
+      <exportingProcessId>1</exportingProcessId>
+    </next>
+  </meteringProcess>
+  <meteringProcess id="5">
+    <packetSelection>
+      <timeBased>
+        <interval>100</interval>
+        <spacing>10</spacing>
+      </timeBased>
+    </packetSelection>
+    <next>
+      <exportingProcessId>4</exportingProcessId>
+    </next>
+  </meteringProcess>
+  <exportingProcess id="1">
+    <ipfixPacketRestrictions>
+      <maxPacketSize>1500</maxPacketSize>
+      <maxExportDelay unit="msec">500</maxExportDelay>
+    </ipfixPacketRestrictions>
+    <udpTemplateManagement>
+      <templateRefreshTimeout unit="sec">5</templateRefreshTimeout>
+      <templateRefreshRate>100</templateRefreshRate>
+    </udpTemplateManagement>
+    <collector>
+      <ipAddressType>4</ipAddressType>
+      <ipAddress>10.2.0.99</ipAddress>
+      <transportProtocol>17</transportProtocol>
+      <port>4739</port>
+    </collector>
+  </exportingProcess>
+</ipfixConfig>
+

@@ -1,0 +1,32 @@
+
+<documentlink xmlns:xi="http://www.w3.org/2001/XInclude">
+	<route-map>
+		<parser valuetype="list" reprintparent="true"/>
+		<deletingcommand neg="true">
+			route-map %s
+            <value>*[local-name() ='map-tag']/text()</value>
+        </deletingcommand>
+		<followcommand>
+			route-map %s 
+            <value>*[local-name() ='map-tag']/text()</value>
+		</followcommand>
+		<childs>
+			<map-tag key ="true"/>
+			<sequences>
+				<parser valuetype="list" reprintparent="true"/>
+				<command>
+					%s %s
+                    <value>*[local-name() ='state']/text()</value>
+                    <value>*[local-name() ='seq-number']/text()</value>
+				</command>
+                <exitcommand>exit</exitcommand>
+				<childs>
+					<seq-number key="true"/>
+					<state key="true"/>
+					<xi:include href="MatchStructure.xml" xpointer="xpointer(/documentlink/match)" parse="xml"/>
+					<xi:include href="SetStructure.xml" xpointer="xpointer(/documentlink/set)" parse="xml"/>
+				</childs>
+			</sequences>
+		</childs>
+	</route-map>
+</documentlink>

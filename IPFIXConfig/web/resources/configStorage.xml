@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configStorage>
+    <configInfo>
+        <name>test</name>
+        <lastModified>07.06.2006</lastModified>
+        <fileName>sampler-config-20060524.xml</fileName>
+        <description>Gerhards erstes Beispiel</description>
+    </configInfo>
+    <configInfo>
+        <name>test</name>
+        <lastModified>07.06.2006</lastModified>
+        <fileName>sampler-config-20060524.xml</fileName>
+        <description>Gerhards erstes Beispiel</description>
+    </configInfo>
+</configStorage>

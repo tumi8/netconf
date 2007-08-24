@@ -1,0 +1,110 @@
+#!/bin/sh
+#
+# netconfd:       Starts the Yenca Agent Daemon
+#
+# Version:      @(#) /etc/init.d/netconf.init 1.3
+#
+# description: This is a daemon which runs a Netconf agent
+# processname: netconfd
+
+DAEMON="/usr/bin/netconfd"
+INIT="/etc/ensuite/yencap/netconfd.xml"
+NAME="netconfd"
+DESC="yencap (Netconf agent)"
+HOMEDIR="/usr/local/ensuite/yencap"
+LOGDIR="/usr/local/ensuite/yencap/log"
+PIDFILE="/var/run/netconfd"
+
+# Check the existence of required files
+test -f $DAEMON || exit 0
+test -f $INIT || exit 0
+
+# Identify the distribution
+if [ -f /etc/debian_version ]
+then
+	DISTRIB="DEBIAN"
+elif [ -f /etc/fedora-release ]
+then
+	DISTRIB="FEDORA"
+elif [ -f /etc/redhat-release ]
+then
+	DISTRIB="REDHAT"
+else
+	DISTRIB="UNKNOWN"
+fi
+
+if [ $DISTRIB == "FEDORA" -o $DISTRIB == "REDHAT" ]
+then
+	# Source function library.
+	. /etc/init.d/functions
+fi
+
+start() {
+	echo -n $"Starting $DESC"
+	if [ $DISTRIB == "DEBIAN" ]
+	then
+		start-stop-daemon --start --quiet --name $NAME --make-pidfile --pidfile $PIDFILE --exec /usr/bin/python $DAEMON &
+	elif [ $DISTRIB == "REDHAT" -o $DISTRIB == "FEDORA" ]
+	then
+		daemon +5 $NAME &
+	else 
+		/usr/bin/python $DAEMON &
+		echo $! > $PIDFILE
+	fi
+	RETVAL=$?
+	sleep 2
+	echo
+	if [ $RETVAL -ne 0 ]; then
+	    return $RETVAL
+	fi
+}
+
+stop() {	
+	echo -n $"Stopping $DESC"
+	if [ $DISTRIB == "DEBIAN" -o $DISTRIB == "UNKNOWN" ]
+	then
+		kill `cat $PIDFILE`
+	elif [ $DISTRIB == "REDHAT" -o $DISTRIB == "FEDORA" ]
+	then
+		killproc $NAME
+	fi
+	RETVAL=$?
+	echo
+	if [ $RETVAL -ne 0 ]; then
+	    return $RETVAL
+	fi
+	
+}
+
+# See how we were called.
+RETVAL=0
+
+case "$1" in
+  'start' )
+  	start;
+	echo
+	break;;
+  'stop' )
+  	stop;
+	echo
+	break;;
+  'restart'  )
+  	$0 stop
+	$0 start
+	echo
+	break;;
+  'status' )
+  	if [ $DISTRIB != "DEBIAN" ]
+	then
+		status $NAME
+		RETVAL=$?
+	else
+		echo $"Usage: $0 {start|stop|restart}";
+	fi
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart}";
+	exit 1;;
+esac 
+
+exit $?

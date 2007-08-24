@@ -1,0 +1,7 @@
+BGP_Module
+	rollback:
+		delete old configuration before do the rollback
+
+XML_Interpreter
+    4suite bug, the attribute doesn't have the namespace. Fix the instance checker at interpretXMLRequest function
+

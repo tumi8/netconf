@@ -1,0 +1,13 @@
+
+<documentlink xmlns:xi="http://www.w3.org/2001/XInclude">
+	<filters>
+		<childs>
+			<xi:include href="AccessListStructure.xml" xpointer="xpointer(/documentlink/access-list)" parse="xml"/>
+			<xi:include href="AccessListStructure.xml" xpointer="xpointer(/documentlink/ipv6-access-list)" parse="xml"/>
+			<xi:include href="ASPathStructure.xml" xpointer="xpointer(/documentlink/as-path)" parse="xml"/>
+			<xi:include href="PrefixListStructure.xml" xpointer="xpointer(/documentlink/prefix-list)" parse="xml"/>
+			<xi:include href="PrefixListStructure.xml" xpointer="xpointer(/documentlink/ipv6-prefix-list)" parse="xml"/>
+			<xi:include href="RouteMapStructure.xml" xpointer="xpointer(/documentlink/route-map)" parse="xml"/>
+		</childs>
+	</filters>
+</documentlink>

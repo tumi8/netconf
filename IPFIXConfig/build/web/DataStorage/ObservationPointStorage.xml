@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<observationPoints xmlns="urn:ietf:params:xml:ns:ipfix-config">
+<observationPoint id="0">
+    <observationDomainId>7777</observationDomainId>
+    <type>pcap</type>
+    <parameters>eth1</parameters>
+  </observationPoint>  
+  <observationPoint id="1">
+    <observationDomainId>45444</observationDomainId>
+    <type>pcap</type>
+    <parameters>eth0</parameters>
+  </observationPoint>
+  <observationPoint id="4">
+    <observationDomainId>4444</observationDomainId>
+    <type>pcap</type>
+    <parameters>eth3</parameters>
+  </observationPoint>
+  <observationPoint id="6">
+    <observationDomainId>4444</observationDomainId>
+    <type>pcap</type>
+    <parameters>eth3</parameters>
+  </observationPoint>
+  <observationPoint id="8">
+    <observationDomainId>8888</observationDomainId>
+    <type>libcap</type>
+    <parameters>eth0</parameters>
+  </observationPoint>
+</observationPoints>
+

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<scenarios xmlns="urn:ietf:params:xml:ns:ipfix-config">
+    <scenario>
+        <name>Scenario 1</name>
+        <descript>New Scenario</descript>
+        <devices>
+            <device>IPFIX Monitor 1</device>
+            <device>IPFIX Monitor 2</device>
+        </devices>
+    </scenario>
+</scenarios>

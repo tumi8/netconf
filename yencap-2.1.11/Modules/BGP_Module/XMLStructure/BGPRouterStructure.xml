@@ -1,0 +1,111 @@
+
+<documentlink xmlns:xi="http://www.w3.org/2001/XInclude">
+	<bgprouter>
+		<parser valuetype="list" reprintparent="true"/>
+		<command>
+            router bgp %s
+            <value>*[local-name() ='as-number']/text()</value>
+        </command>
+		<creatingcommand neg="true">bgp client-to-client reflection</creatingcommand>
+		<exitcommand>exit</exitcommand>
+		<childs>
+			<as-number key="true"/>
+			<fast-external-failover>
+				<parser valuetype="boolean"/>
+				<command>bgp fast-external-failover</command>
+			</fast-external-failover>
+			<id>
+				<command>
+                    bgp router-id %s
+                    <value>text()</value>
+                </command>
+			</id>
+			<log-neighbor-changes>
+				<parser valuetype="boolean"/>
+				<command>bgp log-neighbor-changes</command>
+			</log-neighbor-changes>
+			<always-compare-med>
+				<parser valuetype="boolean"/>
+				<command>bgp always-compare-med</command>
+			</always-compare-med>
+			<local-preference>
+				<parser valuetype="boolean"/>
+				<command>bgp default local-preference</command>
+			</local-preference>
+			<client-to-client-reflection>
+				<parser valuetype="boolean"/>
+				<command>bgp client-to-client reflection</command>
+			</client-to-client-reflection>
+			<cluster-id>
+				<command>
+                    bgp cluster-id %s
+                    <value>text()</value>
+                </command>
+			</cluster-id>
+			<confederation-id>
+				<command>
+                    bgp confederation identifier %s
+                    <value>text()</value>
+                </command>
+			</confederation-id>
+			<confederation-peers>
+				<parser valuetype="list"/>
+				<deletingcommand neg="true">bgp confederation peer</deletingcommand>
+				<followingcommand>bgp confederation peer</followingcommand>
+				<childs>
+					<confederation-peer>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</confederation-peer>
+				</childs>
+			</confederation-peers>
+			<enforce-first-as>
+				<parser valuetype="boolean"/>
+				<command>bgp enforce-first-as</command>
+			</enforce-first-as>
+			<deterministic-med>
+				<parser valuetype="boolean"/>
+				<command>bgp deterministic-med</command>
+			</deterministic-med>
+			<xi:include href="BestPathStructure.xml" xpointer="xpointer(/documentlink/bestpath)" parse="xml"/>
+			<network-import-check>
+				<parser valuetype="boolean"/>
+				<command>bgp network import-check</command>
+			</network-import-check>
+			<scan-time>
+				<command>
+                    bgp scan-time %s
+                    <value>text()</value>
+                </command>
+			</scan-time>
+			<xi:include href="DampeningStructure.xml" xpointer="xpointer(/documentlink/dampening)" parse="xml"/>
+			<xi:include href="PeerGroupsStructure.xml" xpointer="xpointer(/documentlink/peer-groups)" parse="xml"/>
+			<xi:include href="NeighborsStructure.xml" xpointer="xpointer(/documentlink/neighbors)" parse="xml"/>
+			<xi:include href="AddressFamiliesStructure.xml" xpointer="xpointer(/documentlink/address-families)" parse="xml"/>
+			<distance-bgp>
+				<command>
+                    distance bgp %s %s %s
+                    <value>*[local-name() ='external']/text()</value>
+                    <value>*[local-name() ='internal']/text()</value>
+                    <value>*[local-name() ='local']/text()</value>
+                </command>
+				<childs>
+					<external key="true"/>
+					<internal key="true"/>
+					<local key="true"/>
+				</childs>
+			</distance-bgp>
+			<xi:include href="DistancesStructure.xml" xpointer="xpointer(/documentlink/distances)" parse="xml"/>
+			<no-synchronization>
+				<parser valuetype="boolean"/>
+				<command neg="true">synchronization</command>
+			</no-synchronization>
+			<no-autosummary>
+				<parser valuetype="boolean"/>
+				<command neg="true">autosummary</command>
+			</no-autosummary>
+		</childs>
+	</bgprouter>
+</documentlink>

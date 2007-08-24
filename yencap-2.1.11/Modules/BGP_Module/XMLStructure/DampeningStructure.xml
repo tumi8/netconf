@@ -1,0 +1,35 @@
+
+<documentlink>
+	<dampening>
+		<parse allowempty="true"/>
+		<deletingcommand neg="true">bgp dampening</deletingcommand>
+		<creatingcommand>bgp dampening</creatingcommand>
+		<followcommand>bgp dampening</followcommand>
+		<childs>
+			<half-life>
+				<command>
+                    %s
+                    <value>text()</value>
+                </command>
+			</half-life>
+			<reuse>
+				<command>
+                    %s
+                    <value>text()</value>
+                </command>
+			</reuse>
+			<suppress>
+				<command>
+                    %s
+				    <value>text()</value>
+                </command>
+			</suppress>
+			<max-suppress-time>
+				<command>
+                    %s
+				    <value>text()</value>
+                </command>
+			</max-suppress-time>
+		</childs>
+	</dampening>
+</documentlink>

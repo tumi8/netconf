@@ -1,0 +1,12 @@
+<hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <capabilities>
+    <capability>urn:ietf:params:netconf:base:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:writable-running:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:candidate:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:startup:1.0</capability>
+    <capability>urn:ietf:params:netconf:capability:url:1.0?protocol=ftp</capability>
+    <capability>urn:ietf:params:netconf:capability:xpath:1.0</capability>
+<capability>urn:ietf:params:netconf:capability:validate:1.0</capability>
+    <capability>urn:madynes:params:xml:ns:netconf:capability:rbac:1.0</capability>
+  </capabilities>
+</hello>

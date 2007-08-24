@@ -1,0 +1,114 @@
+
+<documentlink>
+	<peer-groups>
+		<parser valuetype="list" allowempty="false"/>
+		<childs>
+			<peer-group>
+				<deletingcommand neg="true">
+                    neighbor %s peer-group
+                    <value>*[local-name() ='name']/text()</value>
+                </deletingcommand>
+				<creatingcommand>
+                    neighbor %s peer-group
+                    <value>*[local-name() ='name']/text()</value>
+                </creatingcommand>
+				<followcommand>
+                    neighbor %s
+                    <value>*[local-name() ='name']/text()</value>
+                </followcommand>
+				<childs>
+					<name key="true"/>
+					<remote-as>
+						<command>
+                            remote-as %s
+                            <value>text()</value>
+                        </command>
+					</remote-as>
+					<description>
+						<command>
+                            description %s
+                            <value>text()</value>
+                        </command>
+					</description>
+					<shutdown>
+						<parser valuetype="boolean"/>
+						<command>shutdown</command>
+					</shutdown>
+					<passive>
+						<parser valuetype="boolean"/>
+						<command>passive</command>
+					</passive>
+					<ebgp-multihop>
+						<parser allowempty="true"/>
+						<deletingcommand neg="true">ebgp-multihop</deletingcommand>
+						<creatingcommand>ebgp-multihop</creatingcommand>
+						<followcommand>ebgp-multihop</followcommand>
+						<childs>
+							<ttl>
+								<command>
+                                    %s
+                                    <value>text()</value>
+                                </command>
+							</ttl>
+						</childs>
+					</ebgp-multihop>
+					<enforce-multihop>
+						<parser valuetype="boolean"/>
+						<command>enforce-multihop</command>
+					</enforce-multihop>
+					<update-source>
+						<command>
+                            update-source %s
+                            <value>text()</value>
+                        </command>
+					</update-source>
+					<timers>
+						<deletingcommand neg="true">timers</deletingcommand>
+						<followcommand>timers</followcommand>
+						<childs>
+							<keep-alive>
+								<command>
+                                    %s
+                                    <value>text()</value>
+                                </command>
+							</keep-alive>
+							<hold-time>
+								<command>
+                                    %s
+                                    <value>text()</value>
+                                </command>
+							</hold-time>
+						</childs>
+					</timers>
+					<weight>
+						<command>
+                            weight %s
+                            <value>text()</value>
+                        </command>
+					</weight>
+					<capability>
+						<followcommand>capability</followcommand>
+						<childs>
+							<dynamic>
+								<parser valuetype="boolean"/>
+								<command>dynamic</command>
+							</dynamic>
+							<route-refresh>
+								<parser valuetype="boolean"/>
+								<command>route-refresh</command>
+							</route-refresh>
+						</childs>
+					</capability>
+					<dont-capability-negotiate>
+						<parser valuetype="boolean"/>
+						<command>dont-capability-negotiate</command>
+					</dont-capability-negotiate>
+					<override-capability>
+						<parser valuetype="boolean"/>
+						<command>override-capability</command>
+					</override-capability>
+				</childs>
+			</peer-group>
+		</childs>
+	</peer-groups>
+</documentlink>

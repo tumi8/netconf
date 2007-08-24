@@ -1,0 +1,168 @@
+
+<documentlink>
+	<set>
+		<followcommand absolutecomm="true">set</followcommand>
+		<childs>
+			<metric>
+				<command>
+                    metric %s%s
+                    <value>
+					    <condition>
+						    <exist-xpath>*[local-name() ='negative']</exist-xpath>
+                        </condition>
+					    -
+                    </value>
+				    <value>*[local-name() ='value']/text()</value>
+                </command>
+				<childs>
+					<negative>
+						<parser valuetype="boolean"/>
+					</negative>
+					<value/>
+				</childs>
+			</metric>
+			<weight>
+				<command>
+                    weight %s
+                    <value>text()</value>
+                </command>
+			</weight>
+			<local-preference>
+				<command>
+                    local-preference %s
+                    <value>text()</value>
+                </command>
+			</local-preference>
+			<origin>
+				<command>
+                    origin %s
+                    <value>text()</value>
+                </command>
+			</origin>
+			<originator-id>
+				<command>
+                    originator-id %s
+				<value>text()</value>
+                </command>
+			</originator-id>
+			<atomic-aggregate>
+				<parser valuetype="boolean"/>
+				<command>atomic-aggregate</command>
+			</atomic-aggregate>
+			<aggregator>
+				<command>
+                    aggregator as %s %s
+                    <value>*[local-name() ='router-as']/text()</value>
+				    <value>*[local-name() ='router-id']/text()</value>
+                </command>
+				<childs>
+					<router-as/>
+					<router-id/>
+				</childs>
+			</aggregator>
+			<as-path>
+				<parser valuetype="list"/>
+				<command>
+                    as-path prepend %s
+                    <value>*[local-name() ='prepend']//text()</value>
+                </command>
+				<childs>
+					<prepend/>
+				</childs>
+			</as-path>
+			<next-hop>
+				<command>
+                    next-hop 
+                </command>
+				<childs>
+					<ipv4address>
+						<command>
+	        	            %s
+                		    <value>text()</value>
+		                </command>
+					</ipv4address>
+					<peer-group>
+						<command>
+	        	            peer-group %s
+                		    <value>text()</value>
+		                </command>
+					</peer-group>
+				</childs>
+			</next-hop>
+			<vpnv4-next-hop>
+				<command>
+                    vpnv4 next-hop %s
+                    <value>text()</value>
+                </command>
+			</vpnv4-next-hop>
+			<ipv6-next-hop>
+				<followcommand>ipv6 nexthop</followcommand>
+				<childs>
+					<local>
+						<command>
+                            local %s
+                            <value>text()</value>
+                        </command>
+					</local>
+					<global>
+						<command>
+                            local %s
+                            <value>text()</value>
+                        </command>
+					</global>
+				</childs>
+			</ipv6-next-hop>
+			<comm-list-del>
+				<command>
+                    comm-list %s delete
+                    <value>text()</value>
+                </command>
+			</comm-list-del>
+			<communities>
+				<parser valuetype="list"/>
+				<command>
+					<condition>
+						<not>
+							<exist-xpath>*[local-name() ='community']</exist-xpath>
+						</not>
+					</condition>
+					community none
+				</command>
+				<command>
+                    <condition>
+						<exist-xpath>*[local-name() ='community']</exist-xpath>
+					</condition>
+					community %s
+                    <value>*[local-name() ='community']/text()</value>
+                </command>
+				<childs>
+                	<community>
+				        <parser valuetype="list" reprintparent="true"/>
+					</community>
+				</childs>
+			</communities>
+			<extcommunities>
+				<followcommand>extcommunity</followcommand>
+				<childs>
+					<extcommunity>
+						<parser valuetype="list"/>
+						<followcommand>
+                            %s
+                            <value>*[local-name() ='type']/text()</value>
+                        </followcommand>
+						<childs>
+							<type/>
+							<value>
+								<parser valuetype="list"/>
+								<command>
+                                    %s
+                                    <value>text()</value>
+                                </command>
+							</value>
+						</childs>
+					</extcommunity>
+				</childs>
+			</extcommunities>
+		</childs>
+	</set>
+</documentlink>

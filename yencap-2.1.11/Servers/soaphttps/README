@@ -1,0 +1,4 @@
+# Generate private key file
+openssl genrsa -out ca.key 2048
+# Generate certificate file
+openssl req -new -x509 -key ca.key -out ca.pem

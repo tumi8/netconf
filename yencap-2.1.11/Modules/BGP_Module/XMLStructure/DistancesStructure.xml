@@ -1,0 +1,34 @@
+
+<documentlink>
+	<distances>
+		<parser valuetype="list" />
+		<followcommand>bgp bestpath</followcommand>
+		<childs>
+			<distance>
+				<command>
+                    distance %s %s/%s
+                    <value>*[local-name() ='value']/text()</value>
+                    <value>*[local-name() ='ip']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+				</command>
+                <followcommand>
+                    distance %s %s/%s
+                    <value>*[local-name() ='value']/text()</value>
+                    <value>*[local-name() ='ip']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+				</followcommand>
+                <childs>
+					<ip key="true"/>
+					<mask key="true"/>
+					<value key="true"/>
+					<word>
+						<command>
+                            %s
+                            <value>text()</value>
+                        </command>
+					</word>
+				</childs>
+			</distance>
+		</childs>
+	</distances>
+</documentlink>

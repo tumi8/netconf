@@ -1,0 +1,23 @@
+
+<documentlink>
+	<networks>
+		<parser valuetype="list"/>
+		<childs>
+			<network>
+				<command>
+                    network %s/%s rd %s route-map %s
+                    <value>*[local-name() ='ip']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+                    <value>*[local-name() ='rd']/text()</value>
+                    <value>*[local-name() ='route-map']/text()</value>
+                </command>
+				<childs>
+					<ip key="true"/>
+					<mask/>
+					<rd/>
+					<route-map/>
+				</childs>
+			</network>
+		</childs>
+	</networks>
+</documentlink>

@@ -1,0 +1,9 @@
+<documentlink xmlns:xi="http://www.w3.org/2001/XInclude">
+	<bgp>
+		<childs>
+			<xi:include href="BGPRouterStructure.xml" xpointer="xpointer(/documentlink/bgprouter)" parse="xml"/>
+			<xi:include href="CommunitiesStructure.xml" xpointer="xpointer(/documentlink/communities)" parse="xml"/>
+			<xi:include href="FiltersStructure.xml" xpointer="xpointer(/documentlink/filters)" parse="xml"/>
+		</childs>
+	</bgp>
+</documentlink>

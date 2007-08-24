@@ -1,0 +1,37 @@
+10.0.11.41[21] 10.0.11.33[any] any
+	out prio def ipsec
+	esp/tunnel/192.168.0.1-192.168.1.2/require
+	created: Mar 10 21:29:55 2006  lastused:                     
+	lifetime: 0(s) validtime: 0(s)
+	spid=1 seq=4 pid=9147
+	refcnt=1
+10.0.0.216[any] 10.0.0.11[any] any
+	out prio def ipsec
+	esp/transport//require
+	ah/transport//require
+	created: Mar 10 21:29:55 2006  lastused:                     
+	lifetime: 0(s) validtime: 0(s)
+	spid=9 seq=3 pid=9147
+	refcnt=1
+10.2.3.4[any] 10.6.7.8[any] any
+	out prio def ipsec
+	ah/transport//require
+	created: Mar 10 21:32:42 2006  lastused:                     
+	lifetime: 0(s) validtime: 0(s)
+	spid=17 seq=2 pid=9147
+	refcnt=1
+10.6.7.8[any] 10.2.3.4[any] any
+	out prio def ipsec
+	esp/transport//require
+	created: Mar 10 21:32:42 2006  lastused:                     
+	lifetime: 0(s) validtime: 0(s)
+	spid=25 seq=1 pid=9147
+	refcnt=1
+fec0:0:0:1::1[any] fec0:0:0:2::2[80] tcp
+	out prio def ipsec
+	esp/transport//use
+	esp/tunnel/fec0:0:0:1::1-fec0:0:0:2::1/require
+	created: Mar 10 21:32:42 2006  lastused:                     
+	lifetime: 0(s) validtime: 0(s)
+	spid=33 seq=0 pid=9147
+	refcnt=1

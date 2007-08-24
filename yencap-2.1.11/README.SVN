@@ -1,0 +1,25 @@
+Dies ist eine angepasste Version von yencap-2.1.11. Die Version vom SVN-Server
+unterscheidet sich in ein paar Punkten von der Original 2.1.11-Version. Zum
+einen enthaelt sie das VERMONT_Module, mit dem VERMONT umkonfiguriert werden
+kann. Zum anderen ist sie schon recht weit vorkonfiguriert und enthaelt ein
+paar Verbesserungen am Core-System.
+Dazu gehoert z.B. das diese Version lokal in diesem Verzeichnis gestartet
+werden kann. Hier ein paar Dinge die Ihr beachten solltet:
+
+1.) Aus technischen Gruenden wird yencap mit einer Python-Exception abstuerzen
+wenn ihr die notwendigen Bibliotheken nicht installiert habt (siehe README)
+
+2.) Eine der Dateien, die Ihr vermutlich editieren wollt ist die Datei
+conf/RBAC-startup.xml. Diese enthaelt die Userdaten, mit denen man sich bei
+yencap anmelden kann.
+
+3.) Eine weitere zu editierende Datei ist run.sh. Dort wollt ihr sicherlich
+die Variable VERMONT_BINARY anpassen. 
+
+4.) Aus technischen Gruenden war es den Autoren von yencap nicht moeglich 
+ordentliche Fehlermeldungen zu produzieren. Wenn ihr zum Beispiel die Meldung
+"(13, 'Permission denied')" bekommt, will euch yencap damit sagen, dass es als
+root gestartet werden moechte.
+
+5.) VERMONT wird (auch hier wieder aus technischen Gruenden) erst nach 
+erhalt der ersten Netconf-Nachricht, welche an VERMONT adressiert ist gestartet

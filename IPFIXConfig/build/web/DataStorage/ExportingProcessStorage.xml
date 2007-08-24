@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exportingProcesses xmlns="urn:ietf:params:xml:ns:ipfix-config">
+    <exportingProcess id="1">
+	<ipfixPacketRestrictions>
+	    <maxPacketSize>1500</maxPacketSize>
+	    <maxExportDelay unit="msec">500</maxExportDelay>
+	</ipfixPacketRestrictions>
+	<udpTemplateManagement>
+	    <templateRefreshTimeout unit="sec">5</templateRefreshTimeout>
+	    <templateRefreshRate>100</templateRefreshRate>
+	</udpTemplateManagement>
+	<collector>
+	    <ipAddressType>4</ipAddressType>
+	    <ipAddress>10.2.0.99</ipAddress>
+	    <transportProtocol>17</transportProtocol>
+	    <port>4739</port>
+	</collector>
+    </exportingProcess>
+    <exportingProcess id="2">
+        <udpTemplateManagement> 
+            <templateRefreshTimeout unit="msec">500</templateRefreshTimeout>
+            <templateRefreshRate>10</templateRefreshRate>
+        </udpTemplateManagement>
+	<collector>
+	    <ipAddressType>4</ipAddressType>
+	    <ipAddress>10.0.0.99</ipAddress>
+	    <transportProtocol>17</transportProtocol>
+	    <port>1234</port>
+	</collector>
+     </exportingProcess>
+</exportingProcesses>

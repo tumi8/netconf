@@ -1,0 +1,23 @@
+<netconf xmlns="urn:loria:madynes:ensuite:yencap:1.0" xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <routing>
+  <rip xmlns="urn:loria:madynes:ensuite:yencap:module:RIP:1.0">
+   <passive-interfaces xc:operation="delete">
+    <passive-interface>eth0</passive-interface>
+    <passive-interface>eth1</passive-interface>
+    <passive-interface>11.0.0.0/8</passive-interface>
+   </passive-interfaces>
+  </rip>
+ </routing>
+</netconf>
+
+
+<netconf xmlns="urn:loria:madynes:ensuite:yencap:1.0" xmlns:xc="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <routing>
+  <rip xmlns="urn:loria:madynes:ensuite:yencap:module:RIP:1.0">
+<networks>
+    <network  xc:operation="create">10.0.0.0/8</network>
+   </networks>
+  </rip>
+ </routing>
+</netconf>
+

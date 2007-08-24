@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<roles xmlns="urn:ietf:params:xml:ns:ipfix-config">
+    <role>
+        <name>Role 1</name>
+        <description>nothing</description>
+        <mapping>
+            <item>
+                <deviceId>IPFIX Monitor 1</deviceId>
+                <configId>Concentrator</configId>
+            </item>
+        </mapping>
+    </role>
+    <role>
+    <name>Role 2</name>
+        <description></description>
+        <mapping>
+            <item>
+                <deviceId>IPFIX Monitor 1</deviceId>
+                <configId>PSAMP Probe Config</configId>
+            </item>
+            <item>
+                <deviceId>IPFIX Monitor 2</deviceId>
+                <configId>PSAMP Probe Config</configId>
+            </item>
+        </mapping>
+    </role>
+</roles>

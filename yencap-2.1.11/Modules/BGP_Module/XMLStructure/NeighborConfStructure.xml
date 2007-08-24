@@ -1,0 +1,151 @@
+
+<documentlink xmlns:xi="http://www.w3.org/2001/XInclude">
+	<neighbors>
+		<parser valuetype="list" allowempty="false"/>
+		<childs>
+			<neighbor>
+				<parser>
+					<condition>
+						<haskey>activate</haskey>
+					</condition>
+					<condition>
+						<value>activate</value>
+					</condition>
+				</parser>
+				<deletingcommand neg="true">
+                    neighbor %s activate
+                    <value>*[local-name() ='ip-address']/text()</value>
+                </deletingcommand>
+				<creatingcommand>
+                    neighbor %s activate
+                    <value>*[local-name() ='ip-address']/text()</value>
+                </creatingcommand>
+				<followcommand>
+                    neighbor %s
+                    <value>*[local-name() ='ip-address']/text()</value>
+				</followcommand>
+                <childs>
+					<ip-address key="true"/>
+					<activated-group>
+						<command>
+                            peer-group %s
+                            <value>text()</value>
+                        </command>
+					</activated-group>
+					<capability-orf>
+						<followcommand>capability orf</followcommand>
+						<childs>
+							<prefix-list>
+								<command>
+                                    prefix-list %s
+                                    <value>text()</value>
+                                </command>
+							</prefix-list>
+						</childs>
+					</capability-orf>
+					<route-reflector-client>
+						<parser valuetype="boolean"/>
+						<command>route-reflector-client</command>
+					</route-reflector-client>
+					<next-hop-self>
+						<parser valuetype="boolean"/>
+						<command>next-hop-self</command>
+					</next-hop-self>
+					<remove-private-as>
+						<parser valuetype="boolean"/>
+						<command>remove-private-as</command>
+					</remove-private-as>
+					<send-community>
+						<command>send-community</command>
+						<followcommand>send-community</followcommand>
+						<childs>
+							<type>
+								<command>
+                                    %s
+                                    <value>text()</value>
+                                </command>
+							</type>
+						</childs>
+					</send-community>
+					<default-originate>
+						<parser allowempty="true"/>
+						<command>default-originate</command>
+						<followcommand>default-originate</followcommand>
+						<childs>
+							<route-map>
+								<command>
+                                    route-map %s
+                                    <value>text()</value>
+                                </command>
+							</route-map>
+						</childs>
+					</default-originate>
+					<soft-reconfiguration>
+						<command>
+                            soft-reconfiguration %s
+                            <value>text()</value>
+                        </command>
+					</soft-reconfiguration>
+					<maximum-prefix>
+						<deletingcommand neg="true">
+                            maximum-prefix %s
+                            <value>*[local-name() ='maximum']/text()</value>
+                        </deletingcommand>
+						<creatingcommand>
+                            maximum-prefix %s
+                            <value>*[local-name() ='maximum']/text()</value>
+                        </creatingcommand>
+						<followcommand>
+                            maximum-prefix %s
+                            <value>*[local-name() ='maximum']/text()</value>
+                        </followcommand>
+						<childs>
+							<maximum key="true"/>
+							<warnning-only>
+								<parser valuetype="boolean"/>
+								<command>warnning-only</command>
+							</warnning-only>
+						</childs>
+					</maximum-prefix>
+					<route-server-client>
+						<parser valuetype="boolean"/>
+						<command>route-server-client</command>
+					</route-server-client>
+					<allowas-in>
+						<parser allowempty="true"/>
+						<deletingcommand neg="true">allowas-in</deletingcommand>
+						<creatingcommand>allowas-in</creatingcommand>
+						<followcommand>allowas-in</followcommand>
+						<childs>
+							<quant>
+								<command>
+                                    %s
+                                    <value>text()</value>
+                                </command>
+							</quant>
+						</childs>
+					</allowas-in>
+					<xi:include href="BindFiltersStructure.xml" xpointer="xpointer(/documentlink/bind-filters)" parse="xml"/>
+					<attribute-unchanged>
+						<creatingcommand>attribute-unchanged</creatingcommand>
+						<followcommand>attribute-unchanged</followcommand>
+						<childs>
+							<as-path>
+								<parser valuetype="boolean"/>
+								<command>as-path</command>
+							</as-path>
+							<next-hop>
+								<parser valuetype="boolean"/>
+								<command>next-hop</command>
+							</next-hop>
+							<med>
+								<parser valuetype="boolean"/>
+								<command>med</command>
+							</med>
+						</childs>
+					</attribute-unchanged>
+				</childs>
+			</neighbor>
+		</childs>
+	</neighbors>
+</documentlink>

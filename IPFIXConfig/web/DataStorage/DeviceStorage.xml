@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devices xmlns="urn:ietf:params:xml:ns:ipfix-config">
+    <device>
+        <name>IPFIX Monitor 1</name>
+        <type>VERMONT</type>
+        <host>127.0.0.1</host>
+        <protocol>SSH</protocol>
+        <port>830</port>
+        <user>max</user>
+        <password>monitor</password>
+        <netconfRole>monitorAdmin</netconfRole>
+        <netconfPath>/netconf/monitoring</netconfPath>
+        <netconfNS>urn:loria:madynes:ensuite:yencap:1.0</netconfNS>
+        <descript>test</descript>
+        <role>Role 1</role>
+        <monitoredNetwork>none</monitoredNetwork>
+    </device>
+    <device>
+        <name>IPFIX Monitor 2</name>
+        <type>IPFIX</type>
+        <host>192.168.0.109</host>
+        <protocol>SSH</protocol>
+        <port>830</port>
+        <user>Gerhard</user>
+        <password>geheim</password>
+        <netconfRole>monitorAdmin</netconfRole>
+        <netconfPath>/netconf/monitoring</netconfPath>
+        <netconfNS>urn:loria:madynes:ensuite:yencap:1.0</netconfNS>
+        <configFile>MonitorConfig2.xml</configFile>
+        <descript>test</descript>
+        <role>Role 2</role>
+        <monitoredNetwork>none</monitoredNetwork>
+    </device>
+</devices>

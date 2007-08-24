@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configInfoElements xmlns="urn:ietf:params:xml:ns:ipfix-config">
+    <configInfo>
+        <name>Concentrator</name>
+        <lastModified>24.05.2006</lastModified>
+        <fileName>concentrator-config-20060524.xml</fileName>
+        <description>Gerhards erste Beispiel-Konfiguration</description>
+    </configInfo>
+    <configInfo>
+        <name>PSAMP Probe Config</name>
+        <lastModified>07.06.2006</lastModified>
+        <fileName>sampler-config-20060607.xml</fileName>
+        <description>Gerhards zweites Beispiel</description>
+    </configInfo>
+</configInfoElements>

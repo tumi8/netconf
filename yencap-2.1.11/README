@@ -1,0 +1,121 @@
+###############################################################################
+#                                                                             #
+# YencaP software, LORIA-INRIA LORRAINE, MADYNES RESEARCH TEAM                #
+# Copyright (C) 2005  Vincent CRIDLIG                                         #
+#                                                                             #
+# This library is free software; you can redistribute it and/or               #
+# modify it under the terms of the GNU Lesser General Public                  #
+# License as published by the Free Software Foundation; either                #
+# version 2.1 of the License, or (at your option) any later version.          #
+#                                                                             #
+# This library is distributed in the hope that it will be useful,             #
+# but WITHOUT ANY WARRANTY; without even the implied warranty of              #
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU           #
+# Lesser General Public License for more details.                             #
+#                                                                             #
+# You should have received a copy of the GNU Lesser General Public            #
+# License along with this library; if not, write to the Free Software         #
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA   #
+#                                                                             #
+# Author Info:                                                                #
+#   Name : Vincent CRIDLIG                                                    #
+#   Email: Vincent.Cridlig@loria.fr                                           #
+#                                                                             #
+###############################################################################
+
+
+                                  README
+
+
+
+
+                                INFORMATION:
+-------------------------------------------------------------------------------
+
+Release: 
+         yencap-2.1.3
+Date   :
+         09-10-2006
+Authors: 
+         Vincent CRIDLIG, cridligv@loria.fr
+         Radu STATE, state@loria.fr
+         Olivier FESTOR, festor@loria.fr
+
+Organism attachement:
+         Madynes Research team
+         LORIA-INRIA Lorraine
+         rue du jardin botanique
+         Villers-les-Nancy
+         FRANCE
+
+License: 
+         Lesser GNU General Public License (LGPL)
+
+
+
+                                REQUIREMENTS:
+-------------------------------------------------------------------------------
+
+This is the list of the RPMs that should be installed 
+into your Linux box:
+
+- python
+- python-devel
+- mozilla-nss
+- mozilla-nss-devel
+- libxml2
+- libxml2-devel
+- libxml2-python
+- 4Suite XML 1.0 rc3
+- 4Suite amara
+
+
+
+
+                                 INSTALLATION:
+-------------------------------------------------------------------------------
+
+- Download the last release of netconfd
+- Unzip this file in the directory of your choice
+- If needed, change the rights of the main python file:
+  % chmod 755 netconfd.py
+
+- make install
+
+                                 UNINSTALLATION:
+-------------------------------------------------------------------------------
+
+- make uninstall
+
+                                  TESTING:
+-------------------------------------------------------------------------------
+
+The Netconf server is listening on port 51432. 
+
+To start the Netconf server:
+  % /etc/init.d/yencap start
+
+To stop the Netconf server:
+  % /etc/init.d/yencap stop
+
+To restart the Netconf server:
+  % /etc/init.d/yencap restart
+
+
+
+                             EXTENDING THE AGENT:
+-------------------------------------------------------------------------------
+
+If you plane to update the Netconf agent with new
+modules, please follow these steps:
+
+- Update the module configuration file (./conf/modules.conf)
+  by adding a new "module" entry.
+- Create a new directory within "Modules" directory and 
+  copy your files there. Don't forget to copy an empty
+  __init__.py file in the newly created directory just
+  to say that it is a package. The main file of your module
+  must inherit Module.py or EasyModule.py
+- Restart the Netconf server.
+
+

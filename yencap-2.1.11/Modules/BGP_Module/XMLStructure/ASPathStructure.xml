@@ -1,0 +1,17 @@
+
+<documentlink>
+	<as-path>
+		<parser valuetype="list" reprintparent="true"/>
+		<command>
+            ip as-path access-list %s %s %s
+            <value>*[local-name() ='name']/text()</value>
+            <value>*[local-name() ='state']/text()</value>
+            <value>*[local-name() ='regexp']/text()</value>
+        </command>
+		<childs>
+			<name key="true"/>
+			<state key="true"/>
+			<regexp/>
+		</childs>
+	</as-path>
+</documentlink>

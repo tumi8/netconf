@@ -1,0 +1,9 @@
+<ipfixConfig xmlns="urn:ietf:params:xml:ns:ipfix-config">
+	<observationPoint id="1">
+		<observationDomainId>12</observationDomainId>
+		<type>pcap</type>
+		<parameters>
+		<interface>eth0</interface>
+		</parameters>
+	</observationPoint>
+</ipfixConfig>

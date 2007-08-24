@@ -1,0 +1,104 @@
+
+<documentlink>
+	<access-list>
+		<parser valuetype="list" reprintparent="true"/>
+		<followcommand>
+			access-list %s 
+            <value>*[local-name() ='list-name']/text()</value>
+        </followcommand>
+		<deletingcommand>
+			access-list %s 
+            <value>*[local-name() ='list-name']/text()</value>
+        </deletingcommand>
+		<childs>
+			<list-name key="true"/>
+			<remark>
+                <command>
+                    remark %s
+                    <value>*[local-name() ='remark']/text()</value>
+                </command>
+            </remark>
+            <list>
+                <parser valuetype="list" reprintparent="true"/>
+                <command>
+                    <condition>
+                        <isdigit>
+                            <xpath>*[local-name() ='source-wild']/text()</xpath>
+                        </isdigit>
+                    </condition>
+                     %s %s/%s %s
+                    <value>*[local-name() ='state']/text()</value>
+                    <value>*[local-name() ='source']/text()</value>
+                    <value>*[local-name() ='source-wild']/text()</value>
+                    <value>*[local-name() ='type']/text()</value>
+                </command>
+                <command>
+                    <condition>
+                        <not>
+                            <isdigit>
+                                <xpath>*[local-name() ='source-wild']/text()</xpath>
+                            </isdigit>
+                        </not>
+                    </condition>
+                    %s %s %s %s %s %s
+                    <value>*[local-name() ='state']/text()</value>
+                    <value>*[local-name() ='protocol']/text()</value>
+                    <value>*[local-name() ='source']/text()</value>
+                        <value>*[local-name() ='source-wild']/text()</value>
+                    <value>*[local-name() ='destination']/text()</value>
+                    <value>*[local-name() ='dest-wild']/text()</value>
+                </command>
+                <childs>
+                    <state key="true"/>
+                    <protocol/>
+                    <source/>
+                    <source-wild/>
+                    <type/>
+                    <destination/>
+                    <dest-wild/>
+                </childs>
+            </list>
+		</childs>
+	</access-list>
+	<ipv6-access-list>
+		<parser valuetype="list" reprintparent="true"/>
+   		<followcommand>
+			ipv6 access-list %s 
+            <value>*[local-name() ='list-name']/text()</value>
+        </followcommand>
+		<deletingcommand>
+			ipv6 access-list %s 
+            <value>*[local-name() ='list-name']/text()</value>
+        </deletingcommand>
+		<childs>
+			<list-name key="true"/>
+			<remark>
+                <command>
+                    remark %s
+                    <value>*[local-name() ='remark']/text()</value>
+                </command>
+            </remark>
+            <list>
+                <parser valuetype="list" reprintparent="true"/>
+                <command>
+                    <condition>
+                        <isdigit>
+                            <xpath>*[local-name() ='source-wild']/text()</xpath>
+                        </isdigit>
+                    </condition>
+                     %s %s/%s %s
+                    <value>*[local-name() ='state']/text()</value>
+                    <value>*[local-name() ='source']/text()</value>
+                    <value>*[local-name() ='mask']/text()</value>
+                    <value>*[local-name() ='type']/text()</value>
+                </command>
+                <childs>
+                    <state key="true"/>
+                    <source/>
+                    <mask/>
+                    <type/>
+                </childs>
+            </list>
+		</childs>
+	</ipv6-access-list>
+</documentlink>
