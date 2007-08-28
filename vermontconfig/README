@@ -1,0 +1,25 @@
+How to build vermontconfig:
+
+Make sure you have ant and java (1.5) installed and in your path. Change into
+the base directory and type
+
+$ ant
+
+That should trigger the build process. Please drop a message to 
+vermont-dev@berlios.de, if you encounter any build problems.
+
+How to run vermontconfig:
+
+You can either run vermontconfig by hand or run it by script.
+
+1.) java -jar NetconfConnect.jar hostname portnumber username password role /path/to/configfile
+
+or
+
+2.) vermontConfig.sh /path/to/configfile
+
+You might need to adopt the vermontConfig.sh script (correct hostname, port,
+etc).
+
+Please send a message to vermont-dev@berlios.de, if you have any problems with
+the software.
