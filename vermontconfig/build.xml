@@ -1,0 +1,26 @@
+<project name="NetconfConnect" default="dist">
+  <property name="NcConnect" value="NetconfConnect" />
+  <path id="compile.classpath">
+    <fileset dir="lib" />
+    <pathelement path="bin" />
+  </path>
+  <target name="compile">
+    <javac srcdir="src" destdir="build">
+      <classpath refid="compile.classpath" />
+    </javac>
+  </target>
+  <!-- Create binary distribution -->
+  <target name="dist" depends="compile">
+    <delete file="${NcConnect}.jar"/>
+    <delete file="dist/${NcConnect}.zip"/>
+    <mkdir dir="dist" />
+    <jar jarfile="${NcConnect}.jar"
+         basedir="build"
+         manifest="manifest.txt" />
+    <zip destfile="dist/${NcConnect}.zip">
+      <fileset dir="." includes="lib/*" />
+      <fileset dir="." includes="${NcConnect}.jar" />
+    </zip>
+  </target>
+</project>
+
