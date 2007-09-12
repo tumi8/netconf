@@ -1,3 +1,5 @@
+package netconf;
+
 import javax.xml.parsers.DocumentBuilder; 
 import javax.xml.parsers.DocumentBuilderFactory;  
 import javax.xml.parsers.FactoryConfigurationError;  
@@ -5,12 +7,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.w3c.dom.DOMException;
 import org.xml.sax.SAXException;
 
@@ -19,17 +23,18 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-class VermontConfig {
-	NcConnector connection;
-	Document document;
-	String configFile;
-	List capabilities;
+public class VermontConfig {
+	private NcConnector connection = null;
+	private Document document = null;
+	private List capabilities = null;
+	private String role;
+	private XPath xpath;
 
-	VermontConfig(String filename, String hostname, int port, String username, String passwd)
+	public VermontConfig()
 	{
-		configFile = filename;
-		connection = new NcConnector(hostname, port, username, passwd, false);
 		capabilities = new ArrayList();
+		XPathFactory xfactory = XPathFactory.newInstance();
+		xpath = xfactory.newXPath();
 	}
 
 	private static String rmXMLTag(String s)
@@ -58,9 +63,12 @@ class VermontConfig {
 	}
 
 
-	void  connectToVermont() throws Exception
+	public void connectToVermont(String hostname, int port, String username, String passwd, String role) throws Exception
 	{
 		StringBuffer messageBuffer = new StringBuffer();
+
+		connection = new NcConnector(hostname, port, username, passwd, false);
+		this.role = role;
 
 		capabilities = connection.connect();
 
@@ -71,13 +79,13 @@ class VermontConfig {
 	}
 
 
-	void readConfig() throws Exception
+	public void readConfig(String filename) throws Exception
 	{
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 
 		try {
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			document = builder.parse( new File( configFile ) );
+			document = builder.parse( new File( filename ) );
 		} catch (SAXException sxe) {
 			// Error generated during parsing
 			Exception  x = sxe;
@@ -87,15 +95,44 @@ class VermontConfig {
 		}
 	}
 
-	String sendRoleData( String role ) throws IOException
+	public void changeItem(String xpathQuery, String newValue) throws Exception
 	{
+		if ( document == null ) {
+			throw new Exception( "Could not change document, because document does not exist" );
+		}
+		Object result = xpath.evaluate( xpathQuery, document, XPathConstants.NODE);
+		if (result == null ) {
+			throw new Exception( "XPathQuery gave no result" );
+		}
+		Node xmlNode = (Node) result;
+		if (xmlNode == null) {
+			throw new Exception( "Could not cast XPathQuery result into xmlNode" );
+		}
+		if (!xmlNode.getNodeName().equals("#text")) {
+			throw new Exception( "XPathQuery did not result in a text node! xmlNode.getNodeName() was \""
+			+ xmlNode.getNodeName() + "\"");
+		}
+		xmlNode.setNodeValue( newValue );
+	}
+
+	public String sendRoleData( ) throws Exception
+	{
+		if ( connection == null ) {
+			throw new Exception( "not connected!" );
+		}
 		String message = "<rbac> <activate> <roles> <role>" + role + "</role> </roles> </activate> </rbac>";
 		return connection.sendRPC( message );
 	}
 	
 
-	String sendConfig() throws Exception
+	public String sendConfig() throws Exception
 	{
+		if ( connection == null ) {
+			throw new Exception( "not connected" );
+		}
+		if ( document == null ) {
+			throw new Exception( "cannot send configuration because we don't have any yet!" );
+		}
 		String message;
                 StringWriter output = new StringWriter();
                 TransformerFactory.newInstance().newTransformer().transform(new DOMSource(document), new StreamResult(output));
@@ -115,7 +152,7 @@ class VermontConfig {
 		return connection.sendRPC( message );
 	}
 
-	String restart() throws Exception
+	public String restart() throws Exception
 	{
 		String message = "<restart><moduleName>VERMONT</moduleName></restart>";
 		return connection.sendRPC( message );

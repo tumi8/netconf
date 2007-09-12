@@ -1,4 +1,4 @@
-
+package netconf;
 /*
  * NcConnector.java
  * 
@@ -151,8 +151,8 @@ public class NcConnector {
 
 	/* 
 	 *  Beendet die Verbindung.
-	 *  Im Falle eines Fehlers beim geordneten Beenden über close-session,
-	 *  wird kill-session ausgeführt und die SSHSession geschlossen.
+	 *  Im Falle eines Fehlers beim geordneten Beenden ueber close-session,
+	 *  wird kill-session ausgefuehrt und die SSHSession geschlossen.
 	 */
 
 	public String disconnect() throws Exception {

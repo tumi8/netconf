@@ -1,4 +1,4 @@
-
+package netconf;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.util.logging.*;
 /*
  * NcHelloHandler.java
- * SAXHandler für Netconf Hello-Messages.
- * Gibt eine Liste mit den Capabilities des Agents zurück.
+ * SAXHandler fuer Netconf Hello-Messages.
+ * Gibt eine Liste mit den Capabilities des Agents zurueck.
  */
 
 /**

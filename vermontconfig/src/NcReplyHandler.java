@@ -1,3 +1,4 @@
+package netconf;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -5,8 +6,8 @@ import org.xml.sax.helpers.DefaultHandler;
 /*
  * NcReplyHandler.java
  *
- * Ein einfacher SAX Handler für Netconf Replys.
- * Die Rückgabewerte werde als public properties
+ * Ein einfacher SAX Handler fuer Netconf Replys.
+ * Die Rueckgabewerte werde als public properties
  * bereitgestellt.
  */
 
@@ -24,7 +25,7 @@ public class NcReplyHandler extends DefaultHandler{
     boolean getData = false;
     
     /*
-     * Diese Properties können gelesen werden, um die Rückgabewerte zu erhalten.
+     * Diese Properties koennen gelesen werden, um die Rueckgabewerte zu erhalten.
      */
     public boolean ok = false;
     public String errorType, errorTag, data, messageId;

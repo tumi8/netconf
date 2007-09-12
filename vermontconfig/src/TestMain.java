@@ -13,17 +13,16 @@ class TestMain {
 		String configFile = args[5];
 
 
-		VermontConfig config = new VermontConfig(configFile, hostname, port,
-							 username, password);
+		netconf.VermontConfig config = new netconf.VermontConfig();
 		try {
 			System.out.println("Connecting ...");
-			config.connectToVermont();
+			config.connectToVermont(hostname, port, username, password, role);
 
 			System.out.println("Reading config file...");
-			config.readConfig();
+			config.readConfig(configFile);
 			
 			System.out.println("Sending netconf role ...");
-			String reply = config.sendRoleData(role);
+			String reply = config.sendRoleData();
 			System.out.println("Got reply: \n" + reply + "\n\n");
 			
 			System.out.println("Sending configuration data ...");
