@@ -203,7 +203,7 @@ class VERMONT_Module(Module):
 
 			configNodeRoot = configDoc.documentElement
 
-			for newProcess in confignode.documentElement.childNodes:
+			for newProcess in confignode.childNodes:
 				if newProcess.nodeType == Node.ELEMENT_NODE:
 					processName = newProcess.localName
 					processId = newProcess.getAttributeNS(EMPTY_NAMESPACE, "id")
@@ -239,7 +239,7 @@ class VERMONT_Module(Module):
 			dataFile = C.YENCAP_HOME + '/Modules/VERMONT_Module/' + target + '.xml'
 			configDoc = NonvalidatingReader.parseUri("file:" + dataFile)
 
-			for newProcess in confignode.documentElement.childNodes:
+			for newProcess in confignode.childNodes:
 				if newProcess.nodeType == Node.ELEMENT_NODE:
 					processName = newProcess.localName
 					operation = newProcess.getAttributeNS('ietf:params:xml:ns:netconf:base:1.0', "operation")
