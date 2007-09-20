@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [ $# != 1 ]
+if [ $# != 1 -a $# != 2 ]
 then
-	echo "Usage: $0 configFile"
+	echo "Usage: $0 configFile [operation]"
 	exit 1
 fi
 
@@ -12,4 +12,4 @@ USERNAME="max"
 PASSWORD="monitor"
 ROLE="SuperManager"
 
-java -jar NetconfConnect.jar $HOSTNAME $PORTNUMBER $USERNAME $PASSWORD $ROLE $1 
+java -jar NetconfConnect.jar $HOSTNAME $PORTNUMBER $USERNAME $PASSWORD $ROLE $1 $2

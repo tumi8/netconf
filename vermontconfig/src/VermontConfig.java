@@ -123,9 +123,19 @@ public class VermontConfig {
 		String message = "<rbac> <activate> <roles> <role>" + role + "</role> </roles> </activate> </rbac>";
 		return connection.sendRPC( message );
 	}
+
+	public String copyConfig() throws Exception
+	{
+		return sendOperation( "copy-config", "");
+	}
+
+	public String editConfig(String defaultOperation) throws Exception
+	{
+		return sendOperation( "edit-config", defaultOperation );
+	}
 	
 
-	public String sendConfig() throws Exception
+	private String sendOperation(String type, String operation) throws Exception
 	{
 		if ( connection == null ) {
 			throw new Exception( "not connected" );
@@ -136,9 +146,12 @@ public class VermontConfig {
 		String message;
                 StringWriter output = new StringWriter();
                 TransformerFactory.newInstance().newTransformer().transform(new DOMSource(document), new StreamResult(output));
-		message = "<copy-config>";
+		message = "<" + type + ">";
 		message += "<target><startup/></target>";
-		message += "<source>";
+		if ( type.equals( "copy-config" ) )
+			message += "<source>";
+		if ( type.equals( "edit-config" ) )
+			message += "<default-operation>" + operation + "</default-operation>";
 		message += "<config>";
 		message += "<netconf xmlns=\"urn:loria:madynes:ensuite:yencap:1.0\">";
 		message += "<monitoring xmlns=\"urn:loria:madynes:ensuite:yencap:1.0\">";
@@ -146,8 +159,9 @@ public class VermontConfig {
 		message += "</monitoring>";
 		message += "</netconf>";
 		message += "</config>";
-		message += "</source>";
-		message += "</copy-config>";
+		if ( type.equals( "copy-config" ) )
+			message += "</source>";
+		message += "</" + type + ">";
 
 		return connection.sendRPC( message );
 	}
